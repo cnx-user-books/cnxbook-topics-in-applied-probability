@@ -1,0 +1,389 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>A Reorder problem-- Electronic Store</title>
+  <metadata>
+  <md:content-id>m31073</md:content-id><md:title>A Reorder problem-- Electronic Store</md:title>
+  <md:abstract>As an example of a reorder problem we consider an electronic store which reorders a certain type of unit on a regular weekly basis. Two possible actions: 1. Order two units, at a cost of $150 each; 2. Order four units, at a cost of $120 each. An optimal demand policy, based on sales the previous week is sought.</md:abstract>
+  <md:uuid>eaae178d-c347-4523-96d8-690ecd9676e5</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="m-file directory.zip" strength="3">Basic M-Procedures for Calculation</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1"><title>A reorder problem</title><example id="eip-id1167284538047"><para id="id2258279">An electronic store stocks a certain type of DVD player. At the end of each week,
+an order is placed for early delivery the following Monday.  A maximum of four
+units is stocked. Let the states be the number of units on hand at the end
+of the sales week: <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">E</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>4</m:mn><m:mo>}</m:mo></m:mrow></m:math>. Two possible actions:</para>
+<!--empty paragraphs get left behind.-->
+        
+        <list id="eip-622"><item>Order two units, at a cost of $150 each</item>
+<item>Order four units, at a cost of $120 each</item>
+</list>
+<!--empty paragraphs get left behind.-->
+        <para id="id2259035">Units sell for $200. If demand exceeds the stock in hand, the retailer assumes
+a penalty of $40 per unit (in losses due to customer dissatisfaction, etc.). 
+Because of turnover, return on sales is considered two percent per week, so
+that discount is <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>02</m:mn></m:mrow></m:math> on a weekly basis.</para>
+<!--empty paragraphs get left behind.-->
+        <para id="id2259077">In state 0, there are three possible actions: order 0, 2, or 4. In states 1 and 2
+there are two possible actions: order 0 or 2. In states 3 and 4, the only action
+is to order 0. Customer demand in week <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math> is represented by a random variable
+<m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub></m:math>. The class is iid, uniformly distributed on the values 0, 1, 2, 3, 4.  
+If <emphasis effect="italics">X<sub>n</sub></emphasis> is the state at the end of week <emphasis effect="italics">n</emphasis>, then <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent
+for each <emphasis effect="italics">n</emphasis>.</para>
+<!--empty paragraphs get left behind.-->
+        <para id="id2259442">Analyze the system as a Markov decision process with type 3 gains, depending upon
+current state, action, and demand. Determine the transition probability matrix
+PA (properly padded) and the gain matrix (also padded). <emphasis effect="italics">Sample calculations</emphasis> are
+as follows:</para>
+        
+<para id="fs-id1165305015446"><m:math><m:mtable>
+          <m:mtr><m:mtd><m:mrow><m:mtext>State 0, action 0:</m:mtext></m:mrow></m:mtd> <m:mtd><m:mrow><m:msub><m:mi>p</m:mi><m:mn>00</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mrow><m:mtext>(all other</m:mtext></m:mrow><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>0</m:mn><m:mi>k</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:mtd></m:mtr>
+          <m:mtr><m:mtd><m:mtext>State 0, action 2:</m:mtext></m:mtd><m:mtd><m:mrow><m:msub><m:mi>p</m:mi><m:mn>00</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≥</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>p</m:mi><m:mn>01</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>5</m:mn></m:mrow><m:mtext>, etc.</m:mtext></m:mtd></m:mtr>
+
+          <m:mtr><m:mtd><m:mtext>State 2, action 2:</m:mtext></m:mtd> <m:mtd><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>2</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn></m:mrow></m:mtd></m:mtr></m:mtable>
+        </m:math></para>
+
+        <para id="id2259718">For state = <emphasis effect="italics">i</emphasis>, action = <emphasis effect="italics">a</emphasis>, and demand = <emphasis effect="italics">k</emphasis>, we seek <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math></para>
+<!--empty paragraphs get left behind.-->
+
+<para id="fs-id3754384">   
+<m:math><m:mtable>
+<m:mtr><m:mtd><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>40</m:mn><m:mi>k</m:mi></m:mrow></m:mtd><m:mtd><m:mtext>0 -40  -80 -120 -160</m:mtext></m:mtd></m:mtr>
+
+        <m:mtr><m:mtd><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>300</m:mn><m:mo>+</m:mo><m:mn>200</m:mn><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>{</m:mo><m:mi>k</m:mi><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>}</m:mo><m:mo>-</m:mo><m:mn>40</m:mn><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>{</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>}</m:mo></m:mrow></m:mtd><m:mtd><m:mtext>-300 -100 100 60 20</m:mtext></m:mtd></m:mtr>
+
+        <m:mtr><m:mtd><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>480</m:mn><m:mo>+</m:mo><m:mn>200</m:mn><m:mi>k</m:mi></m:mrow></m:mtd><m:mtd><m:mtext>-480 -280 -80 120 320</m:mtext></m:mtd></m:mtr>
+</m:mtable>
+</m:math>
+</para>
+
+        <list id="id2259941" display="block" list-type="enumerated" number-style="arabic"><item id="uid5">Complete the transition probability table and the gain table.
+
+</item>
+          <item id="uid6">Determine an optimum infinite-horizon strategy with no discounting.
+
+</item>
+          <item id="uid7">Determine an optimum infinite-horizon strateby with discounting (alpha = 1/1.02).
+
+</item>
+          <item id="uid8">The manager decides to set up a six-week strategy, after which new
+sales conditions may be established.  Determine an optimum strategy for the six-week period.
+
+</item>
+        </list>
+        
+<!--empty paragraphs get left behind.-->
+        <code id="id2260037" display="block"><title>Data file</title>% file orderdata.m
+% Version of 4/5/94
+% Data organized for computation
+type = 3;
+states = 0:4;
+= [0  2  4 ...  % Actions (padded)
+ 0  2 02 ...
+ 0  2 02 ...
+ 0 00 00 ...
+ 0 00 00];
+C  = [0 -300 -480 ... % Order costs (padded)
+0 -300 -300 ...
+0 -300 -300 ...
+0  0  0 ...
+0  0  0];
+SP = 200; % Selling price
+BP = 40;  % Backorder penalty
+PD = 0.2*ones(1,5);  % Demand probabilities
+</code>
+        
+      </example>
+    </section>
+    <section id="cid2">
+      <title>Transition Probabilities and Gains</title>
+      
+      <code id="id2260248" display="block"><title>The procedure</title>% file reorder.m
+% Version of 4/11/94
+% Calculates PA and GA for reorder policy
+states = input('Enter row vector of states ');
+A = input('Enter row vector A of actions (padded)  ');
+C = input('Enter row vector C of order costs (padded) ');
+D = input('Enter row vector D of demand values ');
+PD = input('Enter row vector PD of demand probabilities ');
+SP = input('Enter unit selling price SP ');
+BP = input('Enter backorder penalty cost BP ');
+m = length(states');
+q = length(A);
+na = q/m;
+N = length(D);
+S = ones(na,1)*states;
+S = S(:)';
+[d,s] = meshgrid(D,S);
+a = A'*ones(1,N);
+ca = C'*ones(1,N);
+TA = (s + a - d).*(s + a - d &gt;= 0);
+for i = 1:q
+PA(i,:) = tdbn(states,TA(i,:),PD);
+end
+PA
+GA = ca + SP*d - (SP + BP)*(d -s -a).*(d &gt; s+a)
+</code>
+      
+<!--empty paragraphs get left behind.-->
+      <code id="id2260555" display="block"><title>The calculations</title>orderdata
+reorder
+Enter row vector of states states
+Enter row vector A of actions (padded) A
+Enter row vector C of order costs (padded) C
+Enter row vector D of demand values D
+Enter row vector PD of demand probabilities PD
+Enter unit selling price SP SP
+Enter backorder penalty cost BP BP
+PA =
+1.0000  0       0       0       0
+0.6000  0.2000  0.2000  0       0
+0.2000  0.2000  0.2000  0.2000  0.2000
+0.8000  0.2000  0       0       0
+0.4000  0.2000  0.2000  0.2000  0
+0.4000  0.2000  0.2000  0.2000  0
+0.6000  0.2000  0.2000  0       0
+0.2000  0.2000  0.2000  0.2000  0.2000
+0.2000  0.2000  0.2000  0.2000  0.2000
+0.4000  0.2000  0.2000  0.2000  0
+0.4000  0.2000  0.2000  0.2000  0
+0.4000  0.2000  0.2000  0.2000  0
+0.2000  0.2000  0.2000  0.2000  0.2000
+0.2000  0.2000  0.2000  0.2000  0.2000
+0.2000  0.2000  0.2000  0.2000  0.2000
+GA =
+ 0 -40 -80 -120 -160
+ -300 -100 100 60 20
+ -480 -280 -80 120 320
+ 0 200 160  120  80
+-300 -100 100 300 260
+-300 -100 100 300 260
+0     200 400 360 320
+-300 -100 100 300 500
+-300 -100 100 300 500
+0     200 400 600 560
+0     200 400 600 560
+0     200 400 600 560
+0     200 400 600 800
+0     200 400 600 800
+0     200 400 600 800
+</code>
+      
+<!--empty paragraphs get left behind.-->
+      <code id="id2261014" display="block"><title>Infinite-horizon strategy (no discounting)</title>polit
+Data needed:
+- - - - - - - - - - - - - - -
+Enter case number to show gain type case
+Enter row vector of states states
+Enter row vector A of possible actions A
+Enter value of alpha (= 1 for no discounting) 1
+Enter matrix PA of transition probabilities PA
+Enter matrix GA of gains GA
+Enter row vector PD of demand probabilities PD
+Index Action Value
+0 -80
+2 2 -44
+3 4 -80
+4 0 112
+5 2 52
+6 2 52
+7 0 256
+8 2 100
+9 2 100
+10 0 352
+11 0 352
+12 0 352
+13 0 400
+14 0 400
+15 0 400
+Initial policy: action numbers
+2 1 1 1 1
+Policy: actions
+2 0 0 0 0
+</code>
+      
+      <code id="id2261340" display="block">New policy: action numbers
+3 2 2 1 1
+Policy: actions
+4 2 2 0 0
+ 
+Long-run distribution
+0.2800 0.2000 0.2000 0.2000 0.1200
+Test values for selecting new policy
+Index Action Test Value
+1.0000    0         -248.0000
+2.0000    2.0000    -168.8000
+3.0000    4.0000    -41.6000
+4.0000    0         -48.8000
+5.0000    2.0000    -5.6000
+6.0000    2.0000    -5.6000
+7.0000    0         131.2000
+8.0000    2.0000    138.4000
+9.0000    2.0000    138.4000
+10.0000   0         294.4000
+11.0000   0         294.4000
+12.0000   0         294.4000
+13.0000   0         438.4000
+14.0000   0         438.4000
+15.0000   0         438.4000
+Optimum policy
+State Action Value
+0         4.0000    -168.0000
+1.0000    2.0000    -132.0000
+2.0000    2.0000    12.0000
+3.0000    0         168.0000
+4.0000    0         312.0000
+Long-run expected gain per period G
+126.4000
+</code>
+      
+<!--empty paragraphs get left behind.-->
+      <code id="id2261691" display="block"><title>Infinite-horizon strategy (with discounting)</title>polit
+Data needed:
+- - - - - - - - - - - - - - -
+Enter type number to show gain type
+Enter row vector of states states
+Enter row vector A of possible actions A
+Enter value of alpha (= 1 for no discounting) 1/1.02
+Enter matrix PA of transition probabilities PA
+Enter matrix GA of gains GA
+Enter row vector PD of demand probabilities PD
+</code>
+      
+      <code id="id2261831" display="block">Index Action Value
+1 0 -80
+2 -44
+3 -80
+4 0 112
+5 2 52
+6 2 52
+7 0 256
+8 2 100
+9 2 100
+10 0 352
+11 0 352
+12 0 352
+13 0 400
+14 0 400
+15 0 400
+Initial policy: action numbers
+2 1 1 1 1
+Policy: actions
+2 0 0 0 0
+ 
+New policy: action numbers
+3 2 2 1 1
+Policy: actions
+4 2 2 0 0
+Test values for selecting policy
+Index Action Test Value
+1.0e+03 *
+0.0010 0  6.0746
+0.0020 0.0020 6.1533
+0.0030 0.0040 6.2776
+0.0040 0      6.2740
+0.0050 0.0020 6.3155
+0.0060 0.0020 6.3155
+0.0070 0      6.4533
+0.0080 0.0020 6.4576
+0.0090 0.0020 6.4576
+0.0100 0      6.6155
+0.0110 0      6.6155
+0.0120 0      6.6155
+0.0130 0      6.7576
+0.0140 0      6.7576
+0.0150 0      6.7576
+Optimum policy
+State Action Value
+1.0e+03 *
+0      0.0040 6.2776
+0.0010 0.0020 6.3155
+0.0020 0.0020 6.4576
+0.0030 0      6.6155
+0.0040 0      6.7576
+</code>
+      
+      <code id="id2262340" display="block"><title>Finite-horizon calculations</title>dpinit
+Initialize for finite horizon calculations
+Matrices A, PA, and GA, padded if necessary
+Enter case number to show gain type case
+Enter vector of states states
+Enter row vector A of possible actions A
+Enter matrix PA of transition probabilities PA
+Enter matrix GA of gains GA
+Enter row vector PD of demand probabilities  PD
+Call for dprog
+dprog
+States and expected total gains
+0    1    2    3    4
+-44  112  256  352  400
+States Actions
+0  2
+1  0
+2  0
+3  0
+4  0
+dprog
+States and expected total gains
+0          1.0000    2.0000    3.0000   4.0000
+135.2000   178.4000  315.2000  478.4000 615.2000
+States Actions
+0  4
+1  2
+2  2
+3  0
+4  0
+dprog
+States and expected total gains
+0          1.0000     2.0000      3.0000     4.0000
+264.4800   300.4800   444.4800    600.4800   744.4800
+States Actions
+0  4
+1  2
+2  2
+3  0
+4  0
+dprog
+States and expected total gains
+1.0000  2.0000  3.0000  4.0000
+390.8800 426.8800 570.8800 726.8800  870.8800
+States  Actions
+    0     4
+    1     2
+    2     2
+    3     0
+    4     0
+</code>
+      
+      <code id="id2262830" display="block">dprog
+States and expected total gains
+        0    1.0000    2.0000    3.0000    4.0000
+ 517.2800  553.2800  697.2800  853.2800  997.2800
+States  Actions
+    0     4
+    1     2
+    2     2
+    3     0
+    4     0
+dprog
+States and expected total gains
+  1.0e+03 *
+        0    0.0010    0.0020    0.0030    0.0040
+   0.6437    0.6797    0.8237    0.9797    1.1237
+States  Actions
+    0     4
+    1     2
+    2     2
+    3     0
+    4     0
+</code>
+<!--empty paragraphs get left behind.-->
+    </section>
+  </content>
+</document>

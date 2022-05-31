@@ -1,0 +1,1833 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Martingale Sequences: The Concept, Examples, and Basic Patterns</title>
+  <metadata>
+  <md:content-id>m31076</md:content-id><md:title>Martingale Sequences: The Concept, Examples, and Basic Patterns</md:title>
+  <md:abstract>The notion of martingales and related concepts seem to have originated in
+studies of games of chance. Certain patterns were identified and extended to more
+general sequences of random variables.  The resulting abstract theory provides a basis for many applications, both theoretical and practical.</md:abstract>
+  <md:uuid>aa8635fb-3f70-4b38-9532-37c86ed459dc</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="m-file directory.zip" strength="3">Basic M-Procedures for Calculation</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+    <section id="cid1">
+      <title>The concept, examples, and basic patterns</title>
+      <section id="uid1"><title>A classical example</title><para id="id258162">The notion of martingales and related concepts seem to have originated in
+studies of games of chance similar to the following.  Suppose</para>
+        <list id="eip-id1165704990399" list-type="bulleted" bullet-style="none"><item>      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo></m:mrow></m:math> a gambler's “gain” on the <emphasis effect="italics">n</emphasis>th play of a game</item>
+
+        <item>      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> the original capital or “bankroll”</item>
+</list>
+        
+        <para id="id258229">Set <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>n</m:mi><m:mo>&lt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:mstyle></m:math>.  Thus, <emphasis effect="italics">X<sub>n</sub></emphasis> is the capital after <emphasis effect="italics">n</emphasis> plays, and</para>
+        <equation id="id258360">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mo>∀</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>n</m:mi>
+              <m:mo>≥</m:mo>
+              <m:mn>0</m:mn>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id258454">Put <m:math overflow="scroll"><m:mrow><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Y</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  
+For any <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>h</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> or, equivalently,
+<m:math overflow="scroll"><m:mrow><m:mi>σ</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>σ</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  Hence <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>H</m:mi><m:mo>|</m:mo><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>H</m:mi><m:mo>|</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></para>
+        <!--empty paragraphs get left behind.-->
+        <para id="id258958">If <emphasis effect="italics">Y<sub>N</sub></emphasis> is an independent class with <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the game
+is considered <emphasis effect="italics">fair</emphasis>.  In this case, we have by <link target-id="" document="">(CE5)</link>, <link target-id="" document="">(CE7)</link>, and hypothesis</para>
+        <equation id="id259027">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>U</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>Y</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>V</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>U</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>Y</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id259185">Also   <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>|</m:mo><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></para>
+        <!--empty paragraphs get left behind.-->
+      <para id="id259304">Gamblers seek to develop a “system” to improve expected earnings.  We examine some
+typical approaches and show their futility.  To keep the analysis simple, consider a
+simple coin-flipping game.  Let</para>
+        <list id="eip-id1171818163538" list-type="bulleted" bullet-style="none"><item>      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo></m:mrow></m:math> event of a “head” on the <emphasis effect="italics">k</emphasis>th component trial</item>
+        <item>      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>T</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:msubsup><m:mi>H</m:mi><m:mi>k</m:mi><m:mi>c</m:mi></m:msubsup><m:mo>=</m:mo></m:mrow></m:math> event of a “tail” on the <emphasis effect="italics">k</emphasis>th component trial</item>
+</list>
+        <para id="eip-id4758964">The player has a <emphasis effect="italics">system</emphasis>.  He decides how much to bet on each play from the
+pattern of previous events.  Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub></m:msub><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>T</m:mi><m:mi>n</m:mi></m:msub></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:msub><m:mi>Z</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math> be the result
+of the <emphasis effect="italics">n</emphasis>th play, where  <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>|</m:mo></m:mrow><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>|</m:mo></m:mrow></m:mrow></m:math> is the <emphasis effect="italics">amount</emphasis> of the bet;  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> indicates a
+bet on a head;  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:mo>&lt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> indicates a bet on a tail;  <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> indicates a decision <emphasis effect="italics">not</emphasis>
+to bet.</para>
+        <!--empty paragraphs get left behind.-->
+        <para id="id259563">Systems take various forms;  here we consider two possibilities.</para>
+        <!--empty paragraphs get left behind.-->
+        <list id="id259574" display="block" list-type="enumerated">
+          <item id="uid3">The amount of the bet is determend by the pattern of outcomes of
+previous tosses
+<equation id="id259589"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mn>1</m:mn></m:msub></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mn>2</m:mn></m:msub></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:msub><m:mi>Z</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>Z</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub></m:msub><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>T</m:mi><m:mi>n</m:mi></m:msub></m:msub><m:mo>=</m:mo><m:mn>2</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub></m:msub><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math></equation></item>
+          <item id="uid4">The amount bet is determined by the pattern of previous payoffs
+<equation id="id259806"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Y</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>h</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mn>1</m:mn></m:msub></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>B</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>H</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>B</m:mi><m:mi>n</m:mi></m:msub><m:msub><m:mi>Z</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math></equation></item>
+        </list>
+        <para id="id260022">Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mi>C</m:mi></m:mrow></m:math>, a constant.  Since <emphasis effect="italics">C</emphasis> is independent of any random variable,
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>H</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>H</m:mi><m:mo>]</m:mo></m:mrow></m:math>. In either scheme, by <link target-id="" document="">(CE8)</link>, <link target-id="" document="">(CI5)</link>, and the fact <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>Z</m:mi><m:mi>k</m:mi></m:msub><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math></para>
+        <equation id="id260117">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>Y</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>V</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:msub>
+                  <m:mi>Z</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>φ</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>B</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:msub>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:msub>
+                      <m:mi>H</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:msub>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.277778em"/>
+                  <m:mo>⋯</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>B</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:msub>
+                      <m:mi>H</m:mi>
+                      <m:mi>n</m:mi>
+                    </m:msub>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>Z</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id260322">It follows that</para>
+        <equation id="id260327">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>U</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>Y</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>v</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>U</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>+</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id260457">The “fairness” of the game is not altered by the betting scheme, since decisions
+must be based on past performance.  
+In spite of simple beginnings, the extension and analysis of these patterns form a
+major thrust of modern probability theory.</para>
+      </section>
+    </section>
+    <section id="cid2"><title>Formulation of the concept</title><para id="id260476">In the following treatment,</para>
+      <list id="eip-id6776560" list-type="bulleted" bullet-style="none"><item><m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math> is the <emphasis effect="bold">basic sequence</emphasis>     
+<m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">N</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mspace width="0.277778em"/><m:mo>}</m:mo></m:mrow></m:math></item>
+      <item><m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math> is the <emphasis effect="bold">incremental sequence</emphasis></item></list>
+
+      <equation id="id260636">
+        <m:math overflow="scroll" mode="display">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>k</m:mi>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>n</m:mi>
+              <m:mo>≥</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mi>n</m:mi>
+                <m:mo>&lt;</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mstyle>
+        </m:math>
+      </equation>
+      <para id="id260788">We suppose <emphasis effect="italics">Z<sub>N</sub></emphasis> is a <emphasis effect="bold">decision sequence</emphasis> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>; that is,
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Z</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id260943" display="block" list-type="bulleted">
+        <item id="uid5"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math></item>
+        <item id="uid6">If <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>, then
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>.  In particular, if <m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>k</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>k</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>.
+</item>
+      </list>
+      <para id="id261241"><emphasis effect="bold">Definition</emphasis>.  If <emphasis effect="italics">X<sub>N</sub></emphasis> is integrable and <emphasis effect="italics">Z<sub>N</sub></emphasis> is a decision sequence, then</para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id261286" display="block" list-type="enumerated">
+        <item id="uid7"><emphasis effect="italics">X<sub>N</sub></emphasis> is a <emphasis effect="bold">martingale</emphasis> (MG) relative to <emphasis effect="italics">Z<sub>N</sub></emphasis> iff
+<equation id="id261339"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></equation></item>
+        <item id="uid8"><emphasis effect="italics">X<sub>N</sub></emphasis> is a <emphasis effect="bold">submartingale</emphasis> (SMG) relative to <emphasis effect="italics">Z<sub>N</sub></emphasis> iff
+<equation id="id261526"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≥</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></equation></item>
+        <item id="uid9"><emphasis effect="italics">X<sub>N</sub></emphasis> is a <emphasis effect="bold">supermartingale</emphasis> (SRMG) relative to <emphasis effect="italics">Z<sub>N</sub></emphasis> iff
+<equation id="id261714"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≤</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id261859"><emphasis effect="italics">Notation</emphasis>.  When we write <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a martingale (submartingale,
+supermartingale), we are asserting <emphasis effect="italics">X<sub>N</sub></emphasis> is integrable, <emphasis effect="italics">Z<sub>N</sub></emphasis> is a decision sequence,
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>, and <emphasis effect="italics">X<sub>N</sub></emphasis> is a MG (SMG, SRMG) relative to <emphasis effect="italics">Z<sub>N</sub></emphasis>.</para>
+      <!--empty paragraphs get left behind.-->
+      <para id="id262004"><emphasis effect="bold">Definition</emphasis>.  If <emphasis effect="italics">Y<sub>N</sub></emphasis> is integrable and <emphasis effect="italics">Z<sub>N</sub></emphasis> is a decision sequence, then</para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id262052" display="block" list-type="enumerated">
+        <item id="uid10"><emphasis effect="italics">Y<sub>N</sub></emphasis> is <emphasis effect="bold">absolutely fair</emphasis> relative to <emphasis effect="italics">Z<sub>N</sub></emphasis> iff
+<equation id="id262105"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></equation></item>
+        <item id="uid11"><emphasis effect="italics">Y<sub>N</sub></emphasis> is <emphasis effect="bold">favorable</emphasis> relative to <emphasis effect="italics">Z<sub>N</sub></emphasis> iff
+<equation id="id262287"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≥</m:mo><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></equation></item>
+        <item id="uid12"><emphasis effect="italics">Y<sub>N</sub></emphasis> is <emphasis effect="bold">unfavorable</emphasis> relative to <emphasis effect="italics">Z<sub>N</sub></emphasis> iff
+<equation id="id262468"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≤</m:mo><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id262608"><emphasis effect="bold">Notation</emphasis>.  When we write <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is absolutely fair (favorable,
+unfavorable), we are asserting <emphasis effect="italics">Y<sub>N</sub></emphasis> is integrable, <emphasis effect="italics">Z<sub>N</sub></emphasis> is a decision sequence,
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>, and <emphasis effect="italics">Y<sub>N</sub></emphasis> is absolutely fair (favorable, unfavorable)
+relative to <emphasis effect="italics">Z<sub>N</sub></emphasis>.
+   <link target-id="" document="">IXA2-2</link></para>
+<rule id="eip-id17670197" type="theorem"><title>IXA2-1</title><statement id="eip-id17670235">
+      <para id="id262768">If <emphasis effect="italics">X<sub>N</sub></emphasis> is a basic sequence and <emphasis effect="italics">Y<sub>N</sub></emphasis> is the corresponding incremental
+sequence, then</para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id262812" display="block" list-type="enumerated">
+        <item id="uid13"><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a martingale iff <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is absolutely fair.
+</item>
+        <item id="uid14"><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a submartingale iff <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is favorable.
+</item>
+        <item id="uid15"><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a supermartingale iff <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is unfavorable.
+
+</item>
+      </list>
+</statement>
+      <proof id="eip-id5304915">
+      
+      <para id="id263082">Let * be any one of the symbols <m:math overflow="scroll"><m:mrow><m:mo>=</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>≥</m:mo></m:mrow></m:math>, or <m:math overflow="scroll"><m:mo>≤</m:mo></m:math>.  Then by linearity and <link target-id="" document="">(CE7)</link></para>
+      <equation id="id263116">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mo>*</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="4pt"/>
+            <m:mi> iff </m:mi>
+            <m:mspace width="4pt"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mo>*</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <para id="id263400">
+        <emphasis effect="italics">Remarks</emphasis>
+      </para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id263412" display="block" list-type="enumerated"><item id="uid16"><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a SMG iff <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a SRMG
+</item>
+        <item id="uid17">We write (S)MG to indicate the same statement can be made for a MG or a SMG with
+the appropriate choice of = or <m:math overflow="scroll"><m:mo>≥</m:mo></m:math></item>
+        <item id="uid18">We write <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow></m:math> to indicate simultaneously two cases:
+<list id="eip-id21021472" list-type="bulleted">
+      <item><m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow></m:math> read as = in all places (for a MG)</item>
+      <item><m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow></m:math> read as <m:math overflow="scroll"><m:mo>≥</m:mo></m:math> in all places (for a SMG)</item></list>
+
+</item>
+      </list>
+      
+    </section>
+    <section id="cid3"><title>Some Basic Patterns</title><rule id="eip-id1166746341940" type="theorem">
+        <title>IXA3-1</title>
+      <statement id="eip-id1166745883142">
+      <!--empty paragraphs get left behind.-->
+      <para id="id263663">If <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a (S)MG and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>, with
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>,  then <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a (S)MG.</para>
+</statement>
+      
+      <proof id="eip-id6453556">
+      <para id="id263816">Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>K</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>H</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>H</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  By <link target-id="" document="">(CE9)</link>, the (S)MG definition,
+monotonicity, and <link target-id="" document="">(CE7)</link></para>
+      <equation id="id263887">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>K</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>W</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>K</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>≥</m:mo>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>K</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <!--empty paragraphs get left behind.-->
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <rule id="eip-id7789966" type="theorem"><title>IXA3-2</title><statement id="eip-id1170903395023">
+      <para id="id264084">For integrable <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>, the following are <emphasis effect="italics">equivalent</emphasis></para>
+      <!--empty paragraphs get left behind.-->
+      <para id="eip-id1167265377608"><m:math>
+<m:mtable>
+<m:mtr>
+<m:mtd>
+<m:mstyle mathvariant="doublestruck"><m:mtext>a</m:mtext></m:mstyle>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+<m:mo>(</m:mo>
+<m:msub>
+<m:mi>X</m:mi>
+<m:mi mathvariant="bold">N</m:mi>
+</m:msub>
+<m:mo>,</m:mo>
+<m:mspace width="0.166667em"/>
+<m:msub>
+<m:mi>Z</m:mi>
+<m:mi mathvariant="bold">N</m:mi>
+</m:msub>
+<m:mo>)</m:mo>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+</m:mtd>
+<m:mtd>
+<m:mtext>is a (S)MG</m:mtext>
+</m:mtd>
+</m:mtr>
+
+<m:mtr>
+<m:mtd>
+<m:mtext>b</m:mtext>
+</m:mtd>
+<m:mtd>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>k</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>W</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mspace width="0.277778em"/>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>≥</m:mo>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+</m:mtd>
+<m:mtd>
+              <m:mo>∀</m:mo>
+</m:mtd>
+<m:mtd>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>k</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mtd>
+</m:mtr>                   
+<m:mtr>
+<m:mtd>
+<m:mtext>c</m:mtext>
+</m:mtd>
+<m:mtd>        
+            
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>C</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mspace width="0.277778em"/>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>≥</m:mo>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mspace width="0.277778em"/>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>C</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+</m:mtd>
+<m:mtd>
+              <m:mo>∀</m:mo>
+</m:mtd>
+<m:mtd>
+              <m:mi>C</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>σ</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>W</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+</m:mtd>
+<m:mtd>
+              <m:mo>∀</m:mo>
+</m:mtd>
+<m:mtd>
+              <m:mi>n</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mtd>
+</m:mtr>
+
+<m:mtr>
+<m:mtd>
+<m:mtext>d</m:mtext>
+</m:mtd>
+<m:mtd>         
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>C</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>k</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mspace width="0.277778em"/>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>≥</m:mo>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mspace width="0.277778em"/>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>C</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+</m:mtd>
+<m:mtd>
+              <m:mo>∀</m:mo>
+</m:mtd>
+<m:mtd>
+              <m:mi>C</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>σ</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>W</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+</m:mtd>
+<m:mtd>
+              <m:mo>∀</m:mo>
+</m:mtd>
+<m:mtd>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>k</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mtd>
+</m:mtr>
+</m:mtable>
+</m:math>
+      </para>
+</statement>
+      <proof id="eip-id1170903654485">
+      <!--empty paragraphs get left behind.-->
+      <list id="id264614" display="block" list-type="labeled-item"><item id="uid23"><label>b <m:math overflow="scroll"><m:mrow><m:mo>⇒</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math> a</label>as a  special case
+</item>
+        <item id="uid24"><label>a <m:math overflow="scroll"><m:mrow><m:mo>⇒</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math> b</label>By <link target-id="" document="">(CE9)</link>, (a), and monotonicity
+<equation id="id264674"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>]</m:mo></m:mrow><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow><m:mspace width="3.33333pt"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></equation><m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> iterations yield   <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></item>
+        <item id="uid25"><label>d <m:math overflow="scroll"><m:mrow><m:mo>⇒</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math> c</label>as a  special case
+</item>
+        <item id="uid26"><label>c <m:math overflow="scroll"><m:mrow><m:mo>⇒</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math> a</label>By <link target-id="" document="">(CE1)</link> and (c),   <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>.  
+Since <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>∼</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>, the result
+follows from the uniqueness property <link target-id="" document="">(E5)</link>
+</item>
+        <item id="uid27"><label>b <m:math overflow="scroll"><m:mrow><m:mo>⇒</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math> d</label>By <link target-id="" document="">(CE1)</link>, (b), and monotonicity  <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:mrow></m:math></item>
+      </list>
+      <para id="id265395">We thus have <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mo>⇒</m:mo><m:mi>c</m:mi><m:mo>⇒</m:mo><m:mi>a</m:mi><m:mo>⇔</m:mo><m:mi>b</m:mi><m:mo>⇒</m:mo><m:mi>d</m:mi></m:mrow></m:math></para>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <rule id="eip-id1166753347830" type="corollary">
+        <title>IXA3-3</title>
+      <statement id="eip-id1166751042935">
+      <!--empty paragraphs get left behind.-->
+      <para id="id265459">If <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a (S)MG, then <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>]</m:mo></m:mrow></m:mrow></m:math></para>
+      </statement></rule>
+
+      <rule id="eip-id1166217683039" type="theorem">     
+        <title>IXA3-4</title>      
+      <statement id="eip-id1166217299108">
+      <para id="id265620"><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a (S)MG iff <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>≤</m:mo><m:mi>p</m:mi><m:mo>&lt;</m:mo><m:mi>q</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></para>
+      <!--empty paragraphs get left behind.--></statement>
+      <proof id="eip-id1166748978746"><para id="eip-id6379578">EXERCISE.  Note <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>p</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>+</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mspace width="0.277778em"/><m:mo>+</m:mo><m:msub><m:mi>Y</m:mi><m:mi>q</m:mi></m:msub></m:mrow></m:math></para>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <para id="id265861"><link target-id="" document="">IXA3-2</link></para>
+
+      <rule id="eip-id1164429686088" type="theorem"><title>IXA3-5</title><statement id="eip-id1164443936862">
+      <para id="id265885">If <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is an <m:math overflow="scroll"><m:msup><m:mrow><m:mi mathvariant="bold">L</m:mi></m:mrow><m:mn>2</m:mn></m:msup></m:math> MG, then</para>
+      <!--empty paragraphs get left behind.-->
+      
+<para id="eip-id12587984">    
+          <m:math overflow="scroll">
+<m:mtable>
+<m:mtr>
+<m:mtd>
+<m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>q</m:mi>
+              </m:msub>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>p</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mo>∀</m:mo>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mi>p</m:mi>
+              <m:mo>&lt;</m:mo>
+              <m:mi>q</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mrow>
+</m:mtd>
+</m:mtr>
+<m:mtr>
+<m:mtd>
+<m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>q</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>p</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mo>∀</m:mo>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>p</m:mi>
+              <m:mo>&lt;</m:mo>
+              <m:mi>q</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mrow>
+</m:mtd>
+</m:mtr>
+
+<m:mtr>
+<m:mtd>
+<m:mrow>           
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>m</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>q</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>p</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+</m:mrow>
+
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mo>∀</m:mo>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mi>m</m:mi>
+              <m:mo>&lt;</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>p</m:mi>
+              <m:mo>&lt;</m:mo>
+              <m:mi>q</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mrow>     
+</m:mtd>
+</m:mtr>
+<m:mtr>
+<m:mtd>
+<m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>p</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>q</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msubsup>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo>∧</m:mo>
+                    <m:mi>q</m:mi>
+                  </m:mrow>
+                  <m:mn>2</m:mn>
+                </m:msubsup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mo>∀</m:mo>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mi>p</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>q</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mrow>
+</m:mtd>
+</m:mtr>
+          
+<m:mtr>
+<m:mtd>
+<m:mrow>         
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msub>
+                      <m:mi>X</m:mi>
+                      <m:mi>q</m:mi>
+                    </m:msub>
+                    <m:mo>-</m:mo>
+                    <m:msub>
+                      <m:mi>X</m:mi>
+                      <m:mi>p</m:mi>
+                    </m:msub>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msubsup>
+                  <m:mi>X</m:mi>
+                  <m:mi>q</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msubsup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msubsup>
+                  <m:mi>X</m:mi>
+                  <m:mi>p</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msubsup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>≥</m:mo>
+              <m:mn>0</m:mn>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mo>∀</m:mo>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+              <m:mi>p</m:mi>
+              <m:mo>&lt;</m:mo>
+              <m:mi>q</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+</m:mrow>
+</m:mtd>
+</m:mtr>
+          
+<m:mtr>
+<m:mtd>
+<m:mrow>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msubsup>
+                    <m:mi>X</m:mi>
+                    <m:mi>p</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msubsup>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:munderover>
+                  <m:mo>∑</m:mo>
+                  <m:mrow>
+                    <m:mi>k</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>0</m:mn>
+                  </m:mrow>
+                  <m:mi>p</m:mi>
+                </m:munderover>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msubsup>
+                    <m:mi>Y</m:mi>
+                    <m:mi>k</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msubsup>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+                <m:mo>∀</m:mo>
+</m:mrow>
+</m:mtd>
+<m:mtd>
+<m:mrow>
+                <m:mi>p</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi mathvariant="bold">N</m:mi>
+</m:mrow>              
+</m:mtd>
+</m:mtr>
+</m:mtable>
+</m:math>
+</para>
+
+</statement>
+      <proof id="eip-id1164434539717">
+      <!--empty paragraphs get left behind.-->
+      <list id="id266594" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid34"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mspace width="3.33333pt"/></m:mrow></m:math> by <link target-id="" document="">(CE1b)</link> and Thm <link target-id="" document="">IXA3-4</link>
+</item>
+        <item id="uid35"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> by <link target-id="" document="">(CE1b)</link>,
+<link target-id="" document="">(CE8)</link>, and <link target-id="" document="">Thm IXA3-4</link>
+</item>
+        <item id="uid36">As in b, since <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math></item>
+        <item id="uid37">Suppose <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>&lt;</m:mo><m:mi>q</m:mi></m:mrow></m:math>.  Then, since <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>W</m:mi><m:mi>p</m:mi></m:msub></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>p</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>p</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow></m:mrow></m:math> by definition of MG.  
+For <m:math overflow="scroll"><m:mrow><m:mi>q</m:mi><m:mo>&lt;</m:mo><m:mi>p</m:mi></m:mrow></m:math>, interchange <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>q</m:mi></m:mrow></m:math> in the argument above.
+</item>
+        <item id="uid38"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>q</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>p</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mi>q</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>+</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>p</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>q</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>p</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>+</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>p</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow></m:mrow></m:math> by d, above
+</item>
+        <item id="uid39">By c, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>j</m:mi><m:mo>≠</m:mo><m:mi>k</m:mi></m:mrow></m:math>.  Hence,
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>p</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>p</m:mi></m:munderover><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:munder><m:mo>∑</m:mo><m:mi>j</m:mi></m:munder><m:munder><m:mo>∑</m:mo><m:mi>k</m:mi></m:munder><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>p</m:mi></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>Y</m:mi><m:mi>k</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>]</m:mo></m:mrow></m:mrow></m:mstyle></m:math></item>
+      </list>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <para id="id267468">A variety of weighted sums of increments are useful.</para>
+      <!--empty paragraphs get left behind.-->
+      <rule id="eip-id2650558" type="theorem">
+        <title>IXA3-6</title>
+      <statement id="eip-id5313040">
+      
+      <para id="id267493">Suppose <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a (S)MG and <emphasis effect="italics">Y<sub>N</sub></emphasis> is the incremental sequence.
+Let <emphasis effect="italics">H<sub>0</sub></emphasis> be a (nonnegative) constant and let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>W</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>1</m:mn></m:mrow></m:math>, be
+bounded (nonnegative).  Set</para>
+      <equation id="id267613">
+        <m:math overflow="scroll" mode="display">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:msubsup>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+                <m:mo>*</m:mo>
+              </m:msubsup>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>H</m:mi>
+                <m:mi>k</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>k</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msubsup>
+                <m:mi>Y</m:mi>
+                <m:mi>k</m:mi>
+                <m:mo>*</m:mo>
+              </m:msubsup>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mo>∀</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>n</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi mathvariant="bold">N</m:mi>
+            </m:mrow>
+          </m:mstyle>
+        </m:math>
+      </equation>
+      <para id="id267725">Then <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msubsup><m:mi>X</m:mi><m:mrow><m:mi mathvariant="bold">N</m:mi></m:mrow><m:mo>*</m:mo></m:msubsup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a (S)MG.</para>
+      </statement>
+      <proof id="eip-id1170901041988">
+      <para id="id267787"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow><m:mo>*</m:mo></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>H</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>H</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math> by <link target-id="" document="">(CE8)</link></para>
+      <para id="id267943">For MG case:   <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msubsup><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow><m:mo>*</m:mo></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math> for arbitrary bounded <emphasis effect="italics">H<sub>n</sub></emphasis></para>
+      <para id="id268026">For SMG case:   <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msubsup><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow><m:mo>*</m:mo></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo><m:mo>≥</m:mo><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>, bounded</para>
+      <para id="id268115">The  conclusion follows from <link target-id="eip-id17670197"/></para>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <para id="id268140"><emphasis effect="italics">Remark</emphasis>.  This result extends the pattern in the introductory gambling example.
+  <link target-id="eip-id1166217683039"/> IXA3-3</para>
+      <rule id="eip-id6124880" type="theorem">
+        <title>IXA3-7</title>
+      <statement id="eip-id1168774813862">
+      <!--empty paragraphs get left behind.-->
+      <para id="id268170">In <link target-id="eip-id2650558">Theorem IXA3-6</link>, if <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>]</m:mo><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub><m:mo>≤</m:mo><m:mn>1</m:mn><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>n</m:mi><m:mo>*</m:mo></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>≤</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math></para>
+</statement>
+      <!--empty paragraphs get left behind.-->
+      <proof id="eip-id1168770848606">
+      <!--empty paragraphs get left behind.-->
+      <para id="id268356"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≥</m:mo><m:mspace width="3.33333pt"/><m:msub><m:mi>H</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>, by hypothesis, and
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>Y</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow><m:mo>*</m:mo></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>, by <link target-id="" document="">(CE8)</link>.  
+Thus, by monotonicity and <link target-id="" document="">(CE1b)</link></para>
+      <equation id="id268589">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>≥</m:mo>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msubsup>
+                <m:mi>Y</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mo>*</m:mo>
+              </m:msubsup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>≥</m:mo>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mi mathvariant="bold">N</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>≥</m:mo>
+            <m:msub>
+              <m:mi>H</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msubsup>
+                <m:mi>Y</m:mi>
+                <m:mn>0</m:mn>
+                <m:mo>*</m:mo>
+              </m:msubsup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id268797">Hence</para>
+      <equation id="id268803">
+        <m:math overflow="scroll" mode="display">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>Y</m:mi>
+                  <m:mi>k</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>≥</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msubsup>
+                  <m:mi>Y</m:mi>
+                  <m:mi>k</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msubsup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msubsup>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msubsup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>≥</m:mo>
+              <m:mn>0</m:mn>
+            </m:mrow>
+          </m:mstyle>
+        </m:math>
+      </equation>
+      <!--empty paragraphs get left behind.-->
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <para id="id268954">
+        <emphasis effect="bold">Some important special cases</emphasis>
+      </para>
+      <!--empty paragraphs get left behind.-->
+      <rule id="eip-id1169751901625" type="theorem">
+        <title>IXA3-8</title>
+      <statement id="eip-id1169755615896">
+      <!--empty paragraphs get left behind.-->
+      <para id="id268981">Suppose integrable <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>.  If  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mn>0</m:mn><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a (S)MG.</para></statement>
+      <!--empty paragraphs get left behind.-->
+      <proof id="eip-id1169754533634">
+      <!--empty paragraphs get left behind.-->
+      <para id="id269159">Apply monotonicity and <link target-id="eip-id1166217683039"> Theorem IXA3-4</link></para>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <rule id="eip-id1169751025214" type="theorem">
+        <title>IXA3-9</title>
+      <statement id="eip-id1169756060391">
+      <!--empty paragraphs get left behind.-->
+      <para id="id269198">Suppose <emphasis effect="italics">X<sub>N</sub></emphasis> has independent increments.</para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id269225" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid40">If <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>c</m:mi></m:mrow></m:math>, invariant with <emphasis effect="italics">n</emphasis>, then <emphasis effect="italics">X<sub>N</sub></emphasis> is a MG.
+</item>
+        <item id="uid41">If <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mn>0</m:mn><m:mo>,</m:mo><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math>,  
+then <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math> is a (S)MG.
+
+</item>
+      </list>
+</statement>
+      <proof id="eip-id1169757703251">
+      <!--empty paragraphs get left behind.-->
+      <list id="id269422" display="block" start-value="2" list-type="enumerated" number-style="lower-alpha"><item id="uid42">For any <emphasis effect="italics">n</emphasis>, consider any <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>∈</m:mo><m:mi>σ</m:mi><m:mo>(</m:mo><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>.  By independent increments,
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mo>,</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:math> is independent.  Hence,
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>]</m:mo></m:mrow><m:mo>-</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:mo>≥</m:mo><m:mo>)</m:mo></m:mrow><m:mn>0</m:mn></m:mrow></m:math>.
+The desired result follows from <link target-id="eip-id7789966">Theorem IXA3-2(c)</link>.
+
+</item>
+      </list>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      <rule id="eip-id1169757682806" type="theorem">
+        <title>IXA3-10</title>
+      <statement id="eip-id1169755876622">
+      <!--empty paragraphs get left behind.-->
+      <para id="id269745">Suppose <emphasis effect="italics">g</emphasis> is a <emphasis effect="italics">convex</emphasis> Borel function on an interval <emphasis effect="italics">I</emphasis> which contains the
+range of all <emphasis effect="italics">X<sub>n</sub></emphasis> and</para>
+      <para id="id269788"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mo>|</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mo>]</m:mo><m:mo>&lt;</m:mo><m:mi>∞</m:mi><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math>,  Let
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>∀</m:mo><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">N</m:mi></m:mrow></m:math>,</para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id269920" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid43">If <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a MG, then <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a SMG.
+</item>
+        <item id="uid44">If <emphasis effect="italics">g</emphasis> is nondecreasing and <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a SMG, then
+so is <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>H</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math></item>
+      </list>
+</statement>
+      <proof id="eip-id1169757345438">
+      <!--empty paragraphs get left behind.-->
+      <list id="id270120" display="block" list-type="labeled-item">
+        <item id="uid45"><label>a.   </label>By Jensen's inequality and the definition of a MG
+<equation id="id270138"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≥</m:mo><m:mi>g</m:mi><m:mfenced separators="" open="(" close=")"><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mfenced><m:mo>=</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></equation></item>
+        <item id="uid46"><label>b.   </label>By Jensen's inequality
+<equation id="id270284"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≥</m:mo><m:mi>g</m:mi><m:mfenced separators="" open="(" close=")"><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mfenced><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></equation>
+Since <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≥</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math> and <emphasis effect="italics">g</emphasis> is nondecreasing, we have
+<equation id="id270473"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>g</m:mi><m:mfenced separators="" open="(" close=")"><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mfenced><m:mo>≥</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></equation></item>
+      </list>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      
+      <para id="id270590">
+        <emphasis effect="bold">Some commonly utilized convex functions</emphasis>
+      </para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id270604" display="block" list-type="enumerated">
+        <item id="uid47">
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>g</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>=</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>|</m:mo>
+            </m:mrow>
+          </m:math>
+        </item>
+        <item id="uid48"><m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:math><emphasis effect="italics">g</emphasis> is increasing for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math></item>
+        <item id="uid49"><m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mi>t</m:mi></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>n</m:mi><m:mo>+</m:mo></m:msubsup></m:mrow></m:math><emphasis effect="italics">g</emphasis> nondecreasing for all <emphasis effect="italics">t</emphasis></item>
+        <item id="uid50"><m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mspace width="3.33333pt"/><m:mo>-</m:mo><m:mi>u</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mi>t</m:mi></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msubsup><m:mi>X</m:mi><m:mi>n</m:mi><m:mo>-</m:mo></m:msubsup></m:mrow></m:math><emphasis effect="italics">g</emphasis> nonincreasing for all <emphasis effect="italics">t</emphasis></item>
+        <item id="uid51"><m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>a</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>a</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math><emphasis effect="italics">g</emphasis> is increasing for all <emphasis effect="italics">t</emphasis></item>
+      </list>
+      <rule id="eip-id13242205" type="theorem">
+        <title>IXA3-11</title>
+      <statement id="eip-id13495078">
+      <!--empty paragraphs get left behind.-->
+      <para id="id270994">Consider integrable <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>∼</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub></m:mrow></m:math>.</para>
+      <!--empty paragraphs get left behind.-->
+      <list id="id271033" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid52">If  <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>a</m:mi><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mo>∀</m:mo><m:mi>n</m:mi></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msubsup><m:mi>X</m:mi><m:mi>n</m:mi><m:mo>*</m:mo></m:msubsup><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>a</m:mi><m:mi>n</m:mi></m:msup></m:mfrac><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>∀</m:mo><m:mi>n</m:mi></m:mrow></m:mstyle></m:math>, then
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msubsup><m:mi>X</m:mi><m:mrow><m:mi mathvariant="bold">N</m:mi></m:mrow><m:mo>*</m:mo></m:msubsup><m:mo>,</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a MG
+</item>
+        <item id="uid53">If  <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>W</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≥</m:mo><m:mi>a</m:mi><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mo>,</m:mo><m:mi>a</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mo>∀</m:mo><m:mi>n</m:mi></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msubsup><m:mi>X</m:mi><m:mi>n</m:mi><m:mo>*</m:mo></m:msubsup><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>a</m:mi><m:mi>n</m:mi></m:msup></m:mfrac><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>∀</m:mo><m:mi>n</m:mi></m:mrow></m:mstyle></m:math>, then
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msubsup><m:mi>X</m:mi><m:mrow><m:mi mathvariant="bold">N</m:mi></m:mrow><m:mo>*</m:mo></m:msubsup><m:mo>,</m:mo><m:msub><m:mi>Z</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is a SMG
+
+</item>
+      </list>
+</statement>
+      <proof id="eip-id11151702">
+      <equation id="id271474">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msubsup>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mo>*</m:mo>
+              </m:msubsup>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:msup>
+                <m:mi>a</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+            </m:mfrac>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>≥</m:mo>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:msup>
+                <m:mi>a</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+            </m:mfrac>
+            <m:mi>a</m:mi>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+              <m:mo>*</m:mo>
+            </m:msubsup>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id271639">The restrictionl <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> is needed in the <m:math overflow="scroll"><m:mo>≥</m:mo></m:math> case.</para>
+      </proof></rule>
+      <!--empty paragraphs get left behind.-->
+      
+</section>
+</content>
+</document>

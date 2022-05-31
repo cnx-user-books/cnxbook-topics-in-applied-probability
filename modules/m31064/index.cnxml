@@ -1,0 +1,461 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Cost with Price Breaks</title>
+  <metadata>
+  <md:content-id>m31064</md:content-id><md:title>Cost with Price Breaks</md:title>
+  <md:abstract>A general pattern for costs with price breaks is set up and an application is made in the case demand D has a Poisson distribution.</md:abstract>
+  <md:uuid>f28fc9d8-6dc6-4e22-8c1c-09aa2c29fc88</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="m-file directory.zip" strength="3">Basic M-Procedures for Calculation</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="id258412">Let <emphasis effect="italics">D</emphasis> be the demand random variable. Suppose there is</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id258432" display="block" list-type="labeled-item"><item id="uid1">A flat fee of <emphasis effect="italics">C</emphasis> for <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>≤</m:mo><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math></item>
+      <item id="uid2">A cost of <emphasis effect="italics">c<sub>1</sub></emphasis> per unit for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub><m:mo>&lt;</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:msub><m:mi>a</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math></item>
+      <item id="uid3">A cost of <emphasis effect="italics">c<sub>2</sub></emphasis> per unit for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>a</m:mi><m:mn>2</m:mn></m:msub><m:mo>&lt;</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:msub><m:mi>a</m:mi><m:mn>3</m:mn></m:msub></m:mrow></m:math></item>
+      <item id="uid4">A cost of <emphasis effect="italics">c<sub>3</sub></emphasis> per unit for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>a</m:mi><m:mn>3</m:mn></m:msub><m:mo>&lt;</m:mo><m:mi>D</m:mi></m:mrow></m:math></item>
+    </list>
+    <para id="id258618">Then (see figure)</para>
+    <equation id="id258621"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>g</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>C</m:mi>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>c</m:mi>
+            <m:mn>1</m:mn>
+          </m:msub>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        
+<m:mspace width="4pt"/>
+          <m:mtext>where</m:mtext>
+<m:mspace width="4pt"/>          
+<m:msub>
+            <m:mi>M</m:mi>
+            <m:mi>i</m:mi>
+          </m:msub>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mi>∞</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation><note id="eip-162">Since <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:msub><m:mi>a</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>a</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, we could as well have
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>a</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</note>
+    
+    <!--empty paragraphs get left behind.-->
+    <para id="id259157"><emphasis effect="bold">Special Case.</emphasis> If <emphasis effect="italics">D</emphasis> is Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, we may obtain an exact solution for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> by using the
+fact that <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≥</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and</para>
+    <equation id="id259263">
+      <m:math overflow="scroll" mode="display">
+        <m:mstyle scriptlevel="0" displaystyle="true">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>m</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>∞</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>D</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>D</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>m</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>μ</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mi>μ</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>m</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>μ</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mi>μ</m:mi>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>≥</m:mo>
+              <m:mi>m</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:mstyle>
+      </m:math>
+    </equation>
+    <para id="id259429">As an alternate approach, we approximate <emphasis effect="italics">D</emphasis> by an appropriate number of values.</para>
+    <!--empty paragraphs get left behind.-->
+    <exercise id="fs-id6515241">
+      <title>Example</title>
+<problem id="fs-id6102130">
+      <para id="id259455">A residential College is planning a camping trip over Spring Recess.
+The number <emphasis effect="italics">D</emphasis> of persons planning to go is assumed to be Poisson (15). Arrangements
+for transportation and food have been made as follows:</para>
+      <list id="id259472" display="block" list-type="labeled-item"><item id="uid5">If <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>≤</m:mo><m:mn>4</m:mn></m:mrow></m:math>, a minimal flat fee of $450 will be charged.
+</item>
+        <item id="uid6">If <m:math overflow="scroll"><m:mrow><m:mn>4</m:mn><m:mo>&lt;</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mn>19</m:mn></m:mrow></m:math>, the additional charge is $100 for each person more than 4 (but
+less than 20).
+</item>
+        <item id="uid7">If <m:math overflow="scroll"><m:mrow><m:mn>19</m:mn><m:mo>&lt;</m:mo><m:mi>D</m:mi></m:mrow></m:math>, the charge is $80 for each person more than 19.
+</item>
+      </list>
+      <para id="id259556">Thus, <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>=</m:mo><m:mn>450</m:mn><m:mo>,</m:mo><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:msub><m:mi>a</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>19</m:mn><m:mo>,</m:mo><m:msub><m:mi>c</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mn>100</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>c</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>80</m:mn></m:mrow></m:math>. The
+distribution for <emphasis effect="italics">D</emphasis> is Poisson (15). Then</para>
+      <equation id="id259666">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>450</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>100</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>4</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>80</m:mn>
+              <m:mo>-</m:mo>
+              <m:mn>100</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>19</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>19</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id259784">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>450</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>100</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>4</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>D</m:mi>
+            <m:mo>-</m:mo>
+            <m:mn>20</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>19</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>D</m:mi>
+            <m:mo>-</m:mo>
+            <m:mn>400</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>4</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>380</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>19</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <list id="id259958" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid8">Obtain the “exact” solution to <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid9">Approximate <emphasis effect="italics">D</emphasis> by terms up to 40 and obtain <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>≥</m:mo><m:mi>v</m:mi><m:mo>)</m:mo></m:mrow></m:math> for
+<m:math overflow="scroll"><m:mrow><m:mi>v</m:mi><m:mo>=</m:mo></m:mrow></m:math> 1000, 1500, 2000, 2500.
+
+</item>
+      </list>
+</problem>
+<solution id="fs-id7045297">
+      <code id="id260086" display="block">mu = 15;
+% Part (a)
+EG = 450 + 100*mu*cpoisson(mu,3) - 20*mu*cpoisson(mu,18)...
+- 400*cpoisson(mu,4) + 380*cpoisson(mu,19)
+EG = 1.5433e+03
+% Part (b)
+t = 0:40;
+M1 = t &gt;= 4;
+M2 = t &gt;= 19;
+G = 450 + 100*M1.*(t - 4) - 20*M2.*(t - 19);
+PD = ipoisson(mu,t);
+EGa = dot(G,PD)
+EGa = 1.5433e+03
+P1000 = dot(G &gt;= 1000,PD)
+P1000 = 0.9301
+P1500 = dot(G &gt;= 1500,PD)
+P1500 = 0.5343
+P2000 = dot(G &gt;= 2000,PD)
+P2000 = 0.1248
+P2500 = dot(G &gt;= 2500,PD)
+P2500 = 0.0062
+</code>
+</solution>    
+</exercise>
+  </content>
+</document>

@@ -1,0 +1,896 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Matlab Procedures for Markov Decision Processes</title>
+  <metadata>
+  <md:content-id>m31095</md:content-id><md:title>Matlab Procedures for Markov Decision Processes</md:title>
+  <md:abstract>We first summarize certain essentials in the analysis of homogeneous Markov chains with costs and rewards associated with states, or with transitions between states.  Then we consider three cases: a. Gain associated with a state;  b. One-step transition gains;  and c.  Gains associated with a demand under certain reasonable conditions. Matlab implementations of the results of analysis provide machine solutions to a variety of problems.</md:abstract>
+  <md:uuid>6fe3f109-d2fd-482b-8e18-d65881f5c907</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="m-file directory.zip" strength="3">Basic M-Procedures for Calculation</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="id140345">In order to provide the background for Matlab procedures for Markov decision
+processes, we first summarize certain essentials in the analysis of
+homogeneous Markov chains with costs and rewards associated with
+states, or with transitions between states. References are to Pfeiffer: PROBABILITY FOR APPLICATIONS.  </para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id140362" display="block" list-type="enumerated"><item id="uid1">
+Some cost and reward patterns
+<newline/>
+Consider a finite, ergodic (i.e., recurrent, positive, aperiodic, irreducible)
+homogeneous Markov chain <emphasis effect="italics">X<sub>N</sub></emphasis>, with state space <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">E</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mi>M</m:mi><m:mo>}</m:mo></m:mrow></m:math>. To facilitate use of matrix computation programs,
+we number states from one, except in certain examples in which state zero has a
+natural meaning.  Associated with
+this chain is a cost or reward structure belonging to one of the three general
+classes described below.  The one-step transition probability
+matrix is <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">P</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math>, where <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo><m:mi>j</m:mi><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  The
+distribution for <emphasis effect="italics">X<sub>n</sub></emphasis> is represented by the row matrix <m:math overflow="scroll"><m:mrow><m:mi>π</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>p</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:math>, where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. The long-run distribution is represented by the <emphasis effect="italics">row
+matrix </emphasis><m:math overflow="scroll"><m:mrow><m:mi>π</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>π</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>π</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>π</m:mi><m:mi>M</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math>.
+<list id="id140922" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid2"><emphasis effect="bold">Type 1. Gain associated with a state</emphasis>.  A reward or gain in the amount
+<m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow></m:math> is realized in the next period if the current state is <emphasis effect="italics">i</emphasis>.  The
+<emphasis effect="bold">gain sequence</emphasis><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the sequence of gains realized as the chain
+<emphasis effect="italics">X<sub>N</sub></emphasis> evolves.  We represent the gain function <emphasis effect="italics">g</emphasis> by the column matrix
+<m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">g</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mo>⋯</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup></m:mrow></m:math>.
+
+</item>
+
+<item id="uid3"><emphasis effect="bold"> Type 2. One-step transition gains</emphasis>.  A reward or gain in the amount
+<m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:msub></m:mrow></m:math> is realized in period <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math> if the system
+goes from state <emphasis effect="italics">i</emphasis> in period <emphasis effect="italics">n</emphasis> to state <emphasis effect="italics">j</emphasis> in period <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  The
+corresponding one-step transition probability is <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:msub></m:mrow></m:math>.
+The gain matrix is <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">g</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math>.  
+The <emphasis effect="bold"> gain sequence</emphasis><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of
+random variables <m:math overflow="scroll"><m:mrow><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the sequence of gains
+experienced as the chain <emphasis effect="italics">X<sub>N</sub></emphasis> evolves.
+
+</item>
+<item id="uid4"><emphasis effect="bold">Type 3.  Gains associated with a demand</emphasis>.  In this case, the
+gain random variables are of the form
+<equation id="id141432"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+If <emphasis effect="italics">n</emphasis> represents the present, the random
+vector <m:math overflow="scroll"><m:mrow><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> represents the “past” at <emphasis effect="italics">n</emphasis> of
+the chain <emphasis effect="italics">X<sub>N</sub></emphasis>.  We suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>D</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid and
+each <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo><m:msub><m:mi>U</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent.  Again, the <emphasis effect="bold">gain sequence</emphasis><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> represents the gains realized as the process evolves.
+
+ 
+Standard results on Markov chains show that in each case the sequence <m:math overflow="scroll"><m:mrow><m:msub><m:mi>G</m:mi><m:mi mathvariant="bold">N</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math> is Markov.
+
+</item></list>
+<emphasis effect="bold">A recurrence relation</emphasis>.  We are interested in the expected gains in
+future stages, given the present state of the process.  For any <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>
+and any <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>&gt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the gain <m:math overflow="scroll"><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup></m:math> in the <emphasis effect="italics">m</emphasis> periods following
+period <emphasis effect="italics">n</emphasis> is given by
+<equation id="id141840"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>+</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>2</m:mn></m:mrow></m:msub><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mo>+</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>m</m:mi></m:mrow></m:msub></m:mrow></m:math></equation>
+If the process is in state <emphasis effect="italics">i</emphasis>, the expected gain in the next period <emphasis effect="italics">q<sub>i</sub></emphasis> is
+<equation id="id141959"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+and the expected gain in the next <emphasis effect="italics">m</emphasis> periods is
+<equation id="id142043"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+We utilize a recursion relation that allows us to begin with the
+transition matrix <emphasis effect="bold">P</emphasis> and the <emphasis effect="italics">next-period expected gain matrix</emphasis><m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋯</m:mo><m:msub><m:mi>q</m:mi><m:mi>m</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup></m:mrow></m:math> and calculate the <m:math overflow="scroll"><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup></m:math> for
+any <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>&gt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  Although the analysis is somewhat different for the various
+gain structures, the result exhibits a common pattern.  In each case
+<equation id="id142229"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>+</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id142397"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:munderover><m:munder><m:mo>∑</m:mo><m:mrow><m:mi>j</m:mi><m:mo>∈</m:mo><m:mi>E</m:mi></m:mrow></m:munder><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo><m:mi>j</m:mi><m:mo>]</m:mo></m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id142524"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:munder><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>∈</m:mo><m:mi>E</m:mi></m:mrow></m:munder><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:munderover><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>j</m:mi><m:mo>]</m:mo></m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+We thus have the fundamental recursion relation
+<equation id="id142644"><m:math overflow="scroll" mode="display"><m:mrow><m:mrow><m:mo>(</m:mo><m:mo>*</m:mo><m:mo>)</m:mo></m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:munder><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>∈</m:mo><m:mi>E</m:mi></m:mrow></m:munder><m:msubsup><m:mi>v</m:mi><m:mi>j</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msubsup><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+The recursion relation <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>*</m:mo><m:mo>)</m:mo></m:mrow></m:math> shows that the transition matrix <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">P</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> and the vector of next-period expected gains, which we represent
+by the column matrix <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>q</m:mi><m:mi>M</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup></m:mrow></m:math>,
+determine the <m:math overflow="scroll"><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup></m:math>. The difference between the cases is the manner in which the
+<emphasis effect="italics">q<sub>i</sub></emphasis> are obtained.
+
+      <list id="eip-id1163733087287" list-type="labeled-item"><item><label>Type 1</label>.      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+
+     <item><label>Type 2</label>.      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo>
+
+<m:msub>
+<m:mrow><m:mo>∑</m:mo></m:mrow>
+<m:mrow><m:mi>j</m:mi><m:mo>∈</m:mo><m:mi>E</m:mi></m:mrow>
+</m:msub>
+<m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+
+      <item><label>Type 3</label>.      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mrow><m:mo>∑</m:mo></m:mrow><m:mi>k</m:mi></m:msub><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+
+<item><label>Matrix form</label>.  For computational purposes, we utilize
+these relations in matrix form.   If
+<equation id="id143362"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>v</m:mi><m:mn>1</m:mn><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:msubsup><m:mi>v</m:mi><m:mn>2</m:mn><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>⋯</m:mo><m:msubsup><m:mi>v</m:mi><m:mi>M</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup>
+<m:mspace width="5pt"/>
+<m:mtext>and</m:mtext>
+<m:mspace width="5pt"/>
+<m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋯</m:mo><m:msub><m:mi>q</m:mi><m:mi>M</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup></m:mrow></m:math></equation>
+then
+
+<equation id="id143534"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>(</m:mo><m:mo>*</m:mo><m:mo>)</m:mo><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi mathvariant="bold">q</m:mi><m:mo>+</m:mo><m:mi mathvariant="bold">P</m:mi><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo>
+<m:mspace width="5pt"/><m:mtext>for</m:mtext><m:mspace width="4pt"/><m:mtext>all</m:mtext><m:mspace width="5pt"/><m:mi>m</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="5pt"/><m:mtext>with</m:mtext><m:mspace width="5pt"/><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math></equation></item></list>
+
+Examination of the expressions for <emphasis effect="italics">q<sub>i</sub></emphasis>, above, shows that
+the next-period expected gain matrix <emphasis effect="bold">q</emphasis> takes the following forms.
+In each case, <emphasis effect="bold">g</emphasis> is the gain matrix.  In case c, <emphasis effect="italics">p<sub>D</sub></emphasis> is
+the column matrix whose elements are <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+
+      <list id="eip-id10674755" list-type="labeled-item"><item><label>Type 1</label>
+<m:math overflow="scroll">
+<m:mrow>
+<m:mi mathvariant="bold">q</m:mi>
+<m:mo>=</m:mo>
+<m:mi mathvariant="bold">g</m:mi>
+</m:mrow>
+</m:math></item>
+
+      <item><label>Type 2</label>
+<m:math overflow="scroll">
+<m:mrow>
+<m:mi mathvariant="bold">q</m:mi>
+<m:mo>=</m:mo>
+<m:mspace width="5pt"/><m:mtext>the</m:mtext><m:mspace width="4pt"/><m:mtext>diagonal</m:mtext><m:mspace width="4pt"/><m:mtext>of</m:mtext><m:mspace width="5pt"/><m:mi mathvariant="bold">P</m:mi><m:msup><m:mrow><m:mi mathvariant="bold">g</m:mi></m:mrow><m:mi>T</m:mi></m:msup></m:mrow></m:math></item>
+
+      <item><label>Type 3</label><m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:msub><m:mrow><m:mi mathvariant="bold">g</m:mi><m:mi mathvariant="bold">p</m:mi></m:mrow><m:mi>D</m:mi></m:msub></m:mrow></m:math></item></list></item>
+      <item id="uid5">Some long-run averages
+<newline/>
+Consider the average expected gain for <emphasis effect="italics">m</emphasis> periods
+<equation id="id143915"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>m</m:mi></m:mfrac><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>m</m:mi></m:mfrac><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>m</m:mi></m:mfrac><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation>
+Use of the Markov property and the fact that for an ergodic chain
+<equation id="id144073"><m:math overflow="scroll" mode="display"><m:mrow><m:mfrac><m:mn>1</m:mn><m:mi>m</m:mi></m:mfrac><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msup><m:mi>p</m:mi><m:mi>k</m:mi></m:msup><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:msub><m:mi>π</m:mi><m:mi>j</m:mi></m:msub><m:mspace width="5pt"/><m:mtext>as</m:mtext><m:mspace width="5pt"/><m:mi>m</m:mi><m:mo>→</m:mo><m:mi>∞</m:mi></m:mrow></m:math></equation>
+yields the result that,
+
+<equation id="id144171"><m:math overflow="scroll" mode="display"><m:mrow><m:munder><m:mo movablelimits="true" form="prefix">lim</m:mo><m:mrow><m:mi>m</m:mi><m:mo>→</m:mo><m:mi>∞</m:mi></m:mrow></m:munder><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>m</m:mi></m:mfrac><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:munder><m:mrow><m:mo>∑</m:mo></m:mrow><m:mi>i</m:mi></m:munder><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow><m:munder><m:mrow><m:mo>∑</m:mo></m:mrow><m:mi>j</m:mi></m:munder><m:msub><m:mi>q</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>π</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:munder><m:mrow><m:mo>∑</m:mo></m:mrow><m:mi>j</m:mi></m:munder><m:msub><m:mi>q</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>π</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:mi>g</m:mi></m:mrow></m:math></equation>
+and for any state <emphasis effect="italics">i</emphasis>,
+<equation id="id144330"><m:math overflow="scroll" mode="display"><m:mrow><m:munder><m:mo movablelimits="true" form="prefix">lim</m:mo><m:mrow><m:mi>m</m:mi><m:mo>→</m:mo><m:mi>∞</m:mi></m:mrow></m:munder><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>m</m:mi></m:mfrac><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:munder><m:mo movablelimits="true" form="prefix">lim</m:mo><m:mrow><m:mi>m</m:mi><m:mo>→</m:mo><m:mi>∞</m:mi></m:mrow></m:munder><m:mfrac><m:mn>1</m:mn><m:mi>m</m:mi></m:mfrac><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:mi>g</m:mi></m:mrow></m:math></equation>
+The expression for <emphasis effect="italics">g</emphasis> may be put into matrix form.  If the long-run
+probability distribution is represented by the row matrix <m:math overflow="scroll"><m:mrow><m:mi>π</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>π</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>π</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋯</m:mo><m:msub><m:mi>π</m:mi><m:mi>M</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋯</m:mo><m:mo>;</m:mo><m:msub><m:mi>q</m:mi><m:mi>M</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup></m:mrow></m:math>,
+then
+<equation id="id144574"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>g</m:mi><m:mo>=</m:mo><m:mrow><m:mi>π</m:mi><m:mi mathvariant="bold">q</m:mi></m:mrow></m:mrow></m:math></equation></item>
+      <item id="uid6">Discounting and potentials
+<newline/>
+Suppose in a given time interval the value of
+money increases by a fraction <emphasis effect="italics">a</emphasis>.  This may represent the potential
+earning if the money were invested.  One dollar now is worth <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>a</m:mi></m:mrow></m:math> dollars
+at the end of one period.  It is worth <m:math overflow="scroll"><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow><m:mi>n</m:mi></m:msup></m:math> dollars after
+<emphasis effect="italics">n</emphasis> periods.  Set <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>&lt;</m:mo><m:mi>α</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  It
+takes <emphasis effect="italics">α</emphasis> dollars to
+be worth one dollar after one period.  It takes <emphasis effect="italics">α<sup>n</sup></emphasis> dollars at
+present to be worth one dollar <emphasis effect="italics">n</emphasis> periods later.  Thus
+the <emphasis effect="bold">present worth</emphasis> or
+<emphasis effect="bold">discounted value</emphasis> of one dollar <emphasis effect="italics">n</emphasis> periods in the future is <emphasis effect="italics">α<sup>n</sup></emphasis>
+dollars. This is the amount one would need to invest presently,
+at interest rate <emphasis effect="italics">a</emphasis> per unit of time, to have one dollar <emphasis effect="italics">n</emphasis> periods later.
+
+If <emphasis effect="italics">f</emphasis> is any function defined on the state space <emphasis effect="bold">E</emphasis>, we
+designate by <emphasis effect="bold">f</emphasis> the column matrix <m:math overflow="scroll"><m:msup><m:mrow><m:mo>[</m:mo><m:mi>f</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mi>f</m:mi><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mo>⋯</m:mo><m:mi>f</m:mi><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup></m:math>.  We
+make an exception to this convention in the case of the distributions of the
+state probabilities <m:math overflow="scroll"><m:mrow><m:mi>π</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>⋯</m:mo><m:msub><m:mi>p</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:math>,
+their generating function, and the long-run probabilities  
+<m:math overflow="scroll"><m:mrow><m:mi>π</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>π</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>π</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋯</m:mo><m:msub><m:mi>π</m:mi><m:mi>M</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math>, which we represent as row matrices.  
+It should be clear that much of the following
+development extends immediately to infinite state space <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">E</m:mi><m:mo>=</m:mo><m:mi mathvariant="bold">N</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>}</m:mo></m:mrow></m:math>.
+
+We assume one of the gain structures introduced in Sec 1 and the corresponding
+gain sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>.  The value of the
+random variable <m:math overflow="scroll"><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub></m:math> is the gain or reward realized during the
+period <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  We let each
+transition time be at the end of one period of time (say a month or a
+quarter).  If <emphasis effect="italics">n</emphasis> corresponds to the present, then <m:math overflow="scroll"><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub></m:math> is the
+gain in period <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:math>.  If we do not discount for the period immediately
+after the present, then <m:math overflow="scroll"><m:mrow><m:msup><m:mi>α</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub></m:mrow></m:math> is
+the present value of that gain.  Hence
+<equation id="id145278"><m:math overflow="scroll" mode="display"><m:mrow><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msup><m:mi>α</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub>
+<m:mspace width="5pt"/><m:mtext>is</m:mtext><m:mspace width="4pt"/><m:mtext>the</m:mtext><m:mspace width="4pt"/><m:mtext>total</m:mtext><m:mspace width="4pt"/><m:mtext>discounted</m:mtext><m:mspace width="4pt"/><m:mtext>future</m:mtext><m:mspace width="4pt"/><m:mtext>gain</m:mtext></m:mrow></m:math></equation><emphasis effect="bold">Definition</emphasis>.  The <emphasis effect="italics">α</emphasis>-<emphasis effect="italics">potential</emphasis> of the gain sequence
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is the function <emphasis effect="italics">φ</emphasis> defined by
+<equation id="id145430"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msup><m:mi>α</m:mi><m:mi>n</m:mi></m:msup><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>∀</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">E</m:mi></m:mrow></m:math></equation><emphasis effect="italics">Remark</emphasis>.  <m:math overflow="scroll"><m:mrow><m:mi>φ</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow></m:math> is the expected total discounted gain, given the system
+starts in state <emphasis effect="italics">i</emphasis>.
+
+We next define a concept which is related to the <emphasis effect="italics">α</emphasis>-potential in a useful way.
+
+<emphasis effect="bold">Definition</emphasis>.  The <emphasis effect="italics">α</emphasis>-<emphasis effect="italics">potential matrix</emphasis><m:math overflow="scroll"><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup></m:math> for
+the process <emphasis effect="italics">X<sub>N</sub></emphasis> is the matrix
+<equation id="id145650"><m:math overflow="scroll" mode="display"><m:mrow><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msup><m:mi>α</m:mi><m:mi>n</m:mi></m:msup><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mi>n</m:mi></m:msup><m:mspace width="5pt"/><m:mtext>with</m:mtext><m:mspace width="5pt"/><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>0</m:mn></m:msup><m:mo>=</m:mo><m:mi mathvariant="bold">I</m:mi></m:mrow></m:math></equation>
+
+<rule id="eip-id1169758752358" type="theorem"><title>3.1</title><statement id="eip-id1169757624204"><para id="eip-id1169757642258">Let <emphasis effect="italics">X<sub>N</sub></emphasis> be an ergodic, homogeneous Markov chain with state
+space <emphasis effect="bold">E</emphasis> and gain sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>.  Let <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub><m:mo>⋯</m:mo><m:msub><m:mi>q</m:mi><m:mi>M</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mi>T</m:mi></m:msup></m:mrow></m:math> where  
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mtext>for</m:mtext><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">E</m:mi></m:mrow></m:math>.  
+For <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>∈</m:mo><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>, let <emphasis effect="italics">φ</emphasis> be the <emphasis effect="italics">α</emphasis>-potential for
+the gain sequence.  That is,
+<equation id="id146009"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mfenced separators="" open="[" close="]"><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msup><m:mi>α</m:mi><m:mi>n</m:mi></m:msup><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mrow><m:mo>|</m:mo></m:mrow><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mi>i</m:mi></m:mfenced><m:mo>∀</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">E</m:mi></m:mrow></m:math></equation>
+Then, if <m:math overflow="scroll"><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup></m:math> is the <emphasis effect="italics">α</emphasis>-potential matrix for <emphasis effect="italics">X<sub>N</sub></emphasis>,  we have
+<equation id="id146163"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>φ</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup><m:mi mathvariant="bold">q</m:mi></m:mrow></m:math></equation>
+
+— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para></statement></rule>
+
+<rule id="eip-id5145124" type="theorem"><title>3.2</title><statement id="eip-id2195487"><para id="eip-id3443306">Consider an ergodic, homogeneous Markov chain <emphasis effect="italics">X<sub>N</sub></emphasis> with gain sequence
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>G</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> and next-period expected gain matrix <emphasis effect="bold">q</emphasis>.
+For <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>∈</m:mo><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>, the <emphasis effect="italics">α</emphasis>-potential <emphasis effect="italics">φ</emphasis> and the
+<emphasis effect="italics">α</emphasis>-potential matrix <m:math overflow="scroll"><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup></m:math> satisfy
+<equation id="id146369"><m:math overflow="scroll" mode="display"><m:mrow><m:mrow><m:mo>[</m:mo><m:mi mathvariant="bold">I</m:mi><m:mo>-</m:mo><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mo>]</m:mo></m:mrow><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup><m:mo>=</m:mo><m:mi mathvariant="bold">I</m:mi><m:mtext>and</m:mtext><m:mrow><m:mo>[</m:mo><m:mi mathvariant="bold">I</m:mi><m:mo>-</m:mo><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mo>]</m:mo></m:mrow><m:mi>φ</m:mi><m:mo>=</m:mo><m:mi mathvariant="bold">q</m:mi></m:mrow></m:math></equation>
+If the state space <emphasis effect="bold">E</emphasis> is finite, then
+<equation id="id146496"><m:math overflow="scroll" mode="display"><m:mrow><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:mi mathvariant="bold">I</m:mi><m:mo>-</m:mo><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mtext>and</m:mtext><m:mi>φ</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:mi mathvariant="bold">I</m:mi><m:mo>-</m:mo><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mi>α</m:mi></m:msup><m:mi mathvariant="bold">q</m:mi></m:mrow></m:math></equation>
+— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para></statement></rule>
+
+<example id="eip-id1164035733773"><title>A numerical example</title><para id="eip-id1164034969099">Suppose the transition matrix <emphasis effect="bold">P</emphasis> and the next-period expected gain matrix
+<emphasis effect="bold">q</emphasis> are
+<equation id="id146700"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">P</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mspace width="5pt"/><m:mtext>and</m:mtext><m:mspace width="5pt"/><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>2</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>5</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>3</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:math></equation>
+For <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9</m:mn></m:mrow></m:math>, we have
+<equation id="id147157"><m:math overflow="scroll" mode="display"><m:mrow><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi mathvariant="bold">I</m:mi><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9</m:mn><m:mi mathvariant="bold">P</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>4</m:mn><m:mo>.</m:mo><m:mn>4030</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>2881</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>3088</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>5556</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>1356</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>3088</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>6677</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>2881</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>4</m:mn><m:mo>.</m:mo><m:mn>0441</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mspace width="5pt"/><m:mtext>and</m:mtext><m:mspace width="5pt"/><m:mi>φ</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9</m:mn></m:mrow></m:msup><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>30</m:mn><m:mo>.</m:mo><m:mn>17</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>32</m:mn><m:mo>.</m:mo><m:mn>72</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>30</m:mn><m:mo>.</m:mo><m:mn>91</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:math></equation>
+— <m:math overflow="scroll"><m:mo>□</m:mo></m:math>
+</para>
+</example>
+
+The next example is of class c, but the demand random variable is Poisson, which does not
+have finite range.  The simple pattern for calculating the <emphasis effect="italics">q<sub>i</sub></emphasis> must be modified.
+
+
+
+
+<example id="eip-id8671035"><title>Costs associated with inventory under an <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:math> order policy.</title>
+
+<para id="eip-id7612048">
+If <emphasis effect="italics">k</emphasis> units are ordered, the cost in dollars is
+<equation id="id147743">
+<m:math overflow="scroll" mode="display"><m:mrow><m:mi>c</m:mi><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfenced separators="" open="{" close=""><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>10</m:mn><m:mo>+</m:mo><m:mn>25</m:mn><m:mi>k</m:mi></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>&lt;</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:math></equation>
+</para>
+
+<para id="eip-id1164043215672">For each unit of unsatisfied demand, there is a penalty of 50 dollars. We use
+the 
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:math> inventory policy described in Ex 23.1.3.  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mi>M</m:mi></m:mrow></m:math>,
+and <emphasis effect="italics">X<sub>n</sub></emphasis> is the stock at the end of period <emphasis effect="italics">n</emphasis>, before
+restocking.  Demand in period <emphasis effect="italics">n</emphasis> is <emphasis effect="italics">D<sub>n</sub></emphasis>. The cost for
+restocking at the end of period <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math> is
+<equation id="id148030"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfenced separators="" open="{" close=""><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>10</m:mn><m:mo>+</m:mo><m:mn>25</m:mn><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mn>50</m:mn><m:mo movablelimits="true" form="prefix">max</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:mi>M</m:mi><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>}</m:mo></m:mrow></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>&lt;</m:mo><m:mi>m</m:mi></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>50</m:mn><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>{</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>}</m:mo></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mi>m</m:mi><m:mo>≤</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>≤</m:mo><m:mi>M</m:mi></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:math></equation>
+For <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mi>M</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math>, we have
+<equation id="id148489"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>85</m:mn><m:mo>+</m:mo><m:mn>50</m:mn><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id148610"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>50</m:mn><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>3</m:mn></m:mrow></m:math></equation>
+We take <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mi>M</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math> and assume <emphasis effect="italics">D</emphasis> is Poisson (1).
+From Ex 23.1.3 in PA, we obtain</para>
+
+<equation id="id148789"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">P</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0803</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1839</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6321</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2642</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0803</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1839</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:math></equation>
+
+<para id="eip-id8396727">The largest eigenvalue <m:math overflow="scroll"><m:mrow><m:mo>|</m:mo><m:mi>λ</m:mi><m:mo>|</m:mo><m:mo>≈</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>26</m:mn></m:mrow></m:math>, so <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>10</m:mn></m:mrow></m:math> should be
+sufficient for convergence.  We use <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>16</m:mn></m:mrow></m:math>.</para>
+<para id="eip-id8092561">  
+Taking any row of <m:math overflow="scroll"><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>16</m:mn></m:msup></m:math>, we approximate the long-run distribution by</para>
+
+<equation id="id149237"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>π</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2858</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2847</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2632</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1663</m:mn><m:mo>]</m:mo></m:mrow></m:math></equation>
+
+<para id="eip-id8685168">
+We thus have</para>
+
+<equation id="id149308"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>q</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>85</m:mn><m:mo>+</m:mo><m:mn>50</m:mn><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:msub><m:mi>D</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>85</m:mn><m:mo>+</m:mo><m:mn>50</m:mn><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>4</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>(</m:mo><m:mspace width="5pt"/><m:mtext>the</m:mtext><m:mspace width="5pt"/><m:mtext>term</m:mtext><m:mspace width="4pt"/><m:mtext>for</m:mtext><m:mspace width="4pt"/><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow><m:mspace width="4pt"/><m:mtext>is</m:mtext><m:mspace width="4pt"/><m:mtext>zero</m:mtext><m:mo>)</m:mo></m:mrow></m:math></equation>
+
+<para id="eip-id1164043009264">For the Poisson distribution 
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow><m:mi>∞</m:mi></m:munderover><m:mi>k</m:mi><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mi>λ</m:mi><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub></m:mrow></m:mstyle></m:math>.  
+<newline/>
+Hence
+
+      <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>q</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>85</m:mn><m:mo>+</m:mo><m:mn>50</m:mn><m:mrow><m:mo>[</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>-</m:mo><m:mn>3</m:mn><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>4</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>≈</m:mo><m:mn>85</m:mn><m:mo>+</m:mo><m:mn>50</m:mn><m:mrow><m:mo>[</m:mo><m:mn>0.0803</m:mn><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>×</m:mo><m:mn>0.0190</m:mn><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>86.1668</m:mn></m:mrow></m:mstyle></m:math>
+
+      <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mn>50</m:mn><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mn>50</m:mn><m:mrow><m:mo>[</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>-</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>50</m:mn><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>9</m:mn><m:mo>.</m:mo><m:mn>1970</m:mn></m:mrow></m:mstyle></m:math>
+
+      <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>50</m:mn><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mn>50</m:mn><m:mrow><m:mo>[</m:mo><m:mn>0.2642</m:mn><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>×</m:mo><m:mn>0.0803</m:mn><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>5.1809</m:mn></m:mrow></m:mstyle></m:math>
+
+      <m:math overflow="scroll"><m:mrow><m:msub><m:mi>q</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mn>0</m:mn></m:msub><m:mo>-</m:mo><m:mn>85</m:mn><m:mo>=</m:mo><m:mn>1.1668</m:mn></m:mrow></m:math>
+
+so that
+</para>
+<equation id="id150102"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>86</m:mn><m:mo>.</m:mo><m:mn>1668</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>9</m:mn><m:mo>.</m:mo><m:mn>1970</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>5</m:mn><m:mo>.</m:mo><m:mn>1809</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>1668</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:math></equation>
+<para id="eip-id1164043078990">
+Then, for <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:math> we have</para>
+<equation id="id150347"><m:math overflow="scroll" mode="display"><m:mrow><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi mathvariant="bold">I</m:mi><m:mspace width="3.33333pt"/><m:mo>-</m:mo><m:mspace width="3.33333pt"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn><m:mi mathvariant="bold">P</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mspace width="3.33333pt"/><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>9608</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>0626</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>1589</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8178</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>4051</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>1785</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8304</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5860</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>1733</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>2269</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>1105</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4893</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9608</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>0626</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>1589</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>8178</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>φ</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mi mathvariant="bold">R</m:mi></m:mrow><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:msup><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>185</m:mn><m:mo>.</m:mo><m:mn>68</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>146</m:mn><m:mo>.</m:mo><m:mn>09</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>123</m:mn><m:mo>.</m:mo><m:mn>89</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>100</m:mn><m:mo>.</m:mo><m:mn>68</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:math></equation>
+<para id="eip-id1164035706140">Recall that we are dealing with expected discounted costs.  Since we
+usually consider starting with a full stock, the amount
+<m:math overflow="scroll"><m:mrow><m:mi>φ</m:mi><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>φ</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>100</m:mn><m:mo>.</m:mo><m:mn>68</m:mn></m:mrow></m:math> is the quantity of interest.  Note
+that this is smaller than other values of <m:math overflow="scroll"><m:mrow><m:mi>φ</m:mi><m:mo>(</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:math>, which correspond to
+smaller beginning stock levels.  We expect greater restocking costs in
+such cases.</para></example></item>
+
+      
+
+
+
+
+
+
+<item id="uid7">Evolution of chains with costs and rewards
+<list id="id151114" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid8"> No discounting
+A generating function analysis of
+<equation id="id151130"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>(</m:mo><m:mo>*</m:mo><m:mo>)</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi mathvariant="bold">q</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mi mathvariant="bold">P</m:mi><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>for</m:mtext><m:mspace width="4.pt"/><m:mtext>all</m:mtext><m:mspace width="0.277778em"/><m:mi>m</m:mi><m:mspace width="3.33333pt"/><m:mo>&gt;</m:mo><m:mspace width="3.33333pt"/><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>with</m:mtext><m:mspace width="0.277778em"/><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math></equation>
+shows
+<equation id="id151275"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>n</m:mi><m:mi>g</m:mi><m:mn mathvariant="bold">1</m:mn><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mi mathvariant="bold">v</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>transients,</m:mtext><m:mspace width="4.pt"/><m:mspace width="4.pt"/><m:mtext>where</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:msub><m:mi mathvariant="bold">B</m:mi><m:mn>0</m:mn></m:msub><m:mi mathvariant="bold">q</m:mi></m:mrow></m:math></equation>
+Here <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>=</m:mo><m:mi>π</m:mi><m:mi mathvariant="bold">q</m:mi></m:mrow></m:math>, <emphasis effect="bold"/> is a column matrix of ones, <m:math overflow="scroll"><m:mrow><m:msub><m:mi mathvariant="bold">P</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mi>∞</m:mi></m:msup></m:mrow></m:math>, and <emphasis effect="italics">B<sub>0</sub></emphasis>
+is a matrix which analysis also shows we may approximate by
+<equation id="id151456"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi mathvariant="bold">B</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mi mathvariant="bold">B</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>≈</m:mo><m:mi mathvariant="bold">I</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mi mathvariant="bold">P</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>2</m:mn></m:msup><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mo>+</m:mo><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mi>n</m:mi></m:msup><m:mo>-</m:mo><m:mspace width="3.33333pt"/><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:msub><m:mi mathvariant="bold">P</m:mi><m:mn>0</m:mn></m:msub></m:mrow></m:math></equation>
+The largest <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>|</m:mo></m:mrow><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>|</m:mo><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:mrow></m:math> gives an indication of how many terms
+are needed.
+
+<example id="eip-id1164035804668"><title>The inventory problem (continued)</title><para id="eip-id1164035885240">We consider again the inventory problem.  We have</para>
+
+<equation id="id151641"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">P</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0803</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1839</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6321</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2642</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0803</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1839</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi mathvariant="bold">q</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mspace width="3.33333pt"/><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>86</m:mn><m:mo>.</m:mo><m:mn>1668</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>9</m:mn><m:mo>.</m:mo><m:mn>1970</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>5</m:mn><m:mo>.</m:mo><m:mn>1819</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>1668</m:mn></m:mrow></m:mtd></m:mtr></m:mtable><m:mspace width="3.33333pt"/></m:mfenced></m:mrow></m:math></equation>
+
+<para id="eip-id8804256">The eigenvalues are <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0920</m:mn><m:mo>+</m:mo><m:mi>i</m:mi><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2434</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0920</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2434</m:mn></m:mrow></m:math> and 0.  Thus, the decay of the transients is controlled by <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>|</m:mo></m:mrow><m:msup><m:mi>λ</m:mi><m:mo>*</m:mo></m:msup><m:mrow><m:mo>|</m:mo><m:mo>=</m:mo></m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:msup><m:mn>0920</m:mn><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:msup><m:mn>2434</m:mn><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2602</m:mn></m:mrow></m:math>.  Since <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>|</m:mo></m:mrow><m:msup><m:mi>λ</m:mi><m:mo>*</m:mo></m:msup><m:msup><m:mrow><m:mo>|</m:mo></m:mrow><m:mn>4</m:mn></m:msup><m:mo>≈</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0046</m:mn></m:mrow></m:math>, the transients die out
+rather rapidly.  We obtain the following approximations</para>
+
+
+<equation id="id152431"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi mathvariant="bold">P</m:mi><m:mn>0</m:mn></m:msub><m:mo>≈</m:mo><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>16</m:mn></m:msup><m:mo>≈</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2852</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2847</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2632</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1663</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2852</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2847</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2632</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1663</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2852</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2847</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2632</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1663</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2852</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2847</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2632</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1663</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>so</m:mtext><m:mspace width="4.pt"/><m:mtext>that</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>π</m:mi><m:mo>≈</m:mo><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2852</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2847</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2632</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1663</m:mn><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+
+<para id="eip-id1041428">The approximate value of <emphasis effect="italics">B<sub>0</sub></emphasis> is found to be
+</para>
+
+<equation id="id152853"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi mathvariant="bold">B</m:mi><m:mn>0</m:mn></m:msub><m:mo>≈</m:mo><m:mi mathvariant="bold">I</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mi mathvariant="bold">P</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>2</m:mn></m:msup><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>3</m:mn></m:msup><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>4</m:mn></m:msup><m:mspace width="3.33333pt"/><m:mo>-</m:mo><m:mspace width="3.33333pt"/><m:mn>5</m:mn><m:msub><m:mi mathvariant="bold">P</m:mi><m:mn>0</m:mn></m:msub><m:mo>≈</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4834</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3766</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1242</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mspace width="3.33333pt"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0174</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0299</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mspace width="3.33333pt"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>7537</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5404</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2432</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2307</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1684</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mspace width="3.33333pt"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>7980</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3989</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5166</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3766</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1242</m:mn></m:mrow></m:mtd><m:mtd columnalign="right"><m:mrow><m:mspace width="3.33333pt"/><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>0174</m:mn></m:mrow></m:mtd></m:mtr></m:mtable><m:mspace width="3.33333pt"/></m:mfenced></m:mrow></m:math></equation>
+
+<para id="eip-id6941240">The value <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>=</m:mo><m:mrow><m:mi>π</m:mi><m:mi mathvariant="bold">q</m:mi></m:mrow><m:mo>≈</m:mo><m:mn>28</m:mn><m:mo>.</m:mo><m:mn>80</m:mn></m:mrow></m:math> is found in the earlier treatment.  From
+the values above, we have</para>
+
+
+<equation id="id153350"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:msub><m:mi mathvariant="bold">B</m:mi><m:mn>0</m:mn></m:msub><m:mi mathvariant="bold">q</m:mi><m:mo>≈</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>37</m:mn><m:mo>.</m:mo><m:mn>6</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>6</m:mn><m:mo>.</m:mo><m:mn>4</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>17</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>47</m:mn><m:mo>.</m:mo><m:mn>4</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mspace width="5pt"/><m:mtext>so</m:mtext><m:mspace width="4pt"/><m:mtext>that</m:mtext><m:mspace width="5pt"/><m:mi mathvariant="bold">v</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≈</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>28.80</m:mn><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>37.6</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>28.80</m:mn><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>6.4</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>28.80</m:mn><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>17.8</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mn>28.80</m:mn><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>47.4</m:mn></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mo>+</m:mo><m:mspace width="5pt"/><m:mtext>transients</m:mtext><m:mspace width="5pt"/></m:mrow></m:math></equation>
+
+<para id="eip-id1164038991507">The average gain per period is clearly <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>≈</m:mo><m:mn>28</m:mn><m:mo>.</m:mo><m:mn>80</m:mn></m:mrow></m:math>.  This soon
+dominates the constant terms represented by the entries in <emphasis effect="bold">v</emphasis>.</para></example></item>
+
+
+<item id="uid9"> With discounting
+Let the discount factor be <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>∈</m:mo><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  If <emphasis effect="italics">n</emphasis> represents the
+present period, then
+
+                   <m:math overflow="scroll"><m:mrow><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo></m:mrow></m:math> the reward in the first succeeding period
+                   <m:math overflow="scroll"><m:mrow><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msub><m:mspace width="3.33333pt"/><m:mo>=</m:mo></m:mrow></m:math> the reward in the <emphasis effect="italics">k</emphasis>th succeding period.
+
+If we do not discount the first period, then
+<equation id="id153994"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>+</m:mo><m:mi>α</m:mi><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>2</m:mn></m:mrow></m:msub><m:mo>+</m:mo><m:msup><m:mi>α</m:mi><m:mn>2</m:mn></m:msup><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>3</m:mn></m:mrow></m:msub><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mo>+</m:mo><m:msup><m:mi>α</m:mi><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>m</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>+</m:mo><m:mi>α</m:mi><m:msubsup><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msubsup></m:mrow></m:math></equation>
+Thus
+
+<equation id="id154193"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msubsup><m:mi>G</m:mi><m:mi>n</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:mi>α</m:mi><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>M</m:mi></m:munderover><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>j</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msubsup></m:mrow></m:math></equation>
+In matrix form, this is
+
+<equation id="id154339"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi mathvariant="bold">q</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mi mathvariant="bold">v</m:mi><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math></equation>
+A generating function analysis shows that
+<equation id="id154403"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mtext>transients</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi></m:mrow></m:math></equation>
+Hence, the steady state part of
+<equation id="id154477"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:mi>α</m:mi><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>M</m:mi></m:munderover><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>j</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msubsup><m:mspace width="4pt"/><m:mtext>is</m:mtext><m:mspace width="4pt"/><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:mi>α</m:mi><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>M</m:mi></m:munderover><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi></m:mrow></m:math></equation>
+In matrix form,
+
+<equation id="id154693"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:mi mathvariant="bold">q</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mi mathvariant="bold">v</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>which</m:mtext><m:mspace width="4.pt"/><m:mtext>yields</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:mi mathvariant="bold">I</m:mi><m:mspace width="3.33333pt"/><m:mo>-</m:mo><m:mspace width="3.33333pt"/><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi mathvariant="bold">q</m:mi></m:mrow></m:math></equation>
+Since the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math> are known, we can
+solve for the <emphasis effect="italics">v<sub>i</sub></emphasis>.  Also, since <m:math overflow="scroll"><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup></m:math> is the present value of expected gain <emphasis effect="italics">m</emphasis> steps
+into the future, the <emphasis effect="italics">v<sub>i</sub></emphasis> represent the present value for an unlimited
+future, given that the process starts in state <emphasis effect="italics">i</emphasis>.
+
+</item></list></item>
+      <item id="uid10">Stationary decision policies
+<newline/>
+We suppose throughout this section that <emphasis effect="italics">X<sub>N</sub></emphasis> is ergodic, with finite
+state space <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">E</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>M</m:mi><m:mo>}</m:mo></m:mrow></m:math>.  For each state <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">E</m:mi></m:mrow></m:math>,
+there is a class <emphasis effect="italics">A<sub>i</sub></emphasis> of possible <emphasis effect="bold">actions</emphasis> which may be taken
+when the process is in state <emphasis effect="italics">i</emphasis>.  A <emphasis effect="bold">decision policy</emphasis> is a sequence
+of decision functions <m:math overflow="scroll"><m:mrow><m:msub><m:mi>d</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>d</m:mi><m:mn>2</m:mn></m:msub><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math> such that
+<equation id="id155106"><m:math overflow="scroll" mode="display"><m:mrow><m:mtext>The</m:mtext><m:mspace width="4.pt"/><m:mtext>action</m:mtext><m:mspace width="4.pt"/><m:mtext>at</m:mtext><m:mspace width="4.pt"/><m:mtext>stage</m:mtext><m:mspace width="4.pt"/><m:mi>n</m:mi><m:mspace width="4.pt"/><m:mtext>is</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>d</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>.</m:mo></m:mrow></m:math></equation>
+The action selected is in <emphasis effect="italics">A<sub>i</sub></emphasis> whenever <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi></m:mrow></m:math>.  We consider a
+special class of decision policies.
+
+<emphasis effect="bold">Stationary decision policy</emphasis><equation id="id155267"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>d</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>d</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>with</m:mtext><m:mspace width="4.pt"/><m:mi>d</m:mi><m:mspace width="4.pt"/><m:mtext>invariant</m:mtext><m:mspace width="4.pt"/><m:mtext>with</m:mtext><m:mspace width="0.277778em"/><m:mi>n</m:mi></m:mrow></m:math></equation>
+The possible actions depend upon the current state.  That is <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>∈</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math> whenever <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi></m:mrow></m:math>.  Analysis shows the Markov character of the process
+is preserved under stationary policies.  Also, if <emphasis effect="bold">E</emphasis> is finite and every stationary
+policy produces an irreducible chain,  then an optimal stationary policy is optimal.
+<emphasis effect="italics">We suppose each policy yields an ergodic chain</emphasis>.  Since the transition
+probabilities from any state depend in part on the action taken when in
+that state, the long-run probabilities will depend upon the policy.
+
+In the no-discounting case, we want to determine a stationary policy that maximizes
+the gain <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>=</m:mo><m:mrow><m:mi>π</m:mi><m:mi mathvariant="bold">q</m:mi></m:mrow></m:mrow></m:math> for the corresponding long-run probabilities.
+We say “a stationary policy,” since we do not rule out the possibility
+there may be more than one policy which maximizes the gain.
+
+In the discounting case, the goal is to maximize the steady state part
+<emphasis effect="italics">v<sub>i</sub></emphasis> in the expressions
+<equation id="id155525"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:mspace width="0.277778em"/><m:mtext>transients</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi></m:mrow></m:math></equation>
+In simple cases, with small state space and a small number of possible
+actions in each state, it may be feasible to obtain the gain or present values for each
+permissible policy and then select the optimum by direct comparison.
+However, for most cases, this is not an efficient approach.  In the next two
+sections, we consider iterative procedures for step-by-step optimization
+which usually greatly reduces the computational burden.
+</item>
+      <item id="uid11">Policy iteration method– no discounting
+<newline/>
+We develop an iterative procedure for finding an optimal
+stationary policy.  The goal is to determine a stationary policy that
+maximizes the long run expected gain per period <emphasis effect="italics">g</emphasis>.  In the next section,
+we extend this procedure to the
+case where discounting is in effect.  <emphasis effect="italics">We assume that each policy yields an
+ergodic chain</emphasis>.  Suppose we have established that <emphasis effect="italics">under a given policy</emphasis>
+
+      (1)   <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:munder><m:mo>∑</m:mo><m:mi>j</m:mi></m:munder><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>j</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msubsup></m:mrow></m:mstyle></m:math>,   where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>G</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>|</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math>
+
+In this case, the analysis in Sec 4 shows that for large <emphasis effect="italics">n</emphasis>,
+
+      (2)   <m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>v</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup><m:mo>≈</m:mo><m:mi>n</m:mi><m:mi>g</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>,  where  
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>g</m:mi><m:mo>=</m:mo><m:munder><m:mo>∑</m:mo><m:mi>i</m:mi></m:munder><m:msub><m:mi>π</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math>
+
+We note that <emphasis effect="italics">v<sub>i</sub></emphasis> and <emphasis effect="italics">g</emphasis> depend upon the entire policy, while
+<emphasis effect="italics">q<sub>i</sub></emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:math> depend on the individual actions <emphasis effect="italics">a<sub>i</sub></emphasis>.  Using
+(1) and (2), we obtain
+<equation id="id155993"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>n</m:mi><m:mi>g</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:munder><m:mo>∑</m:mo><m:mi>i</m:mi></m:munder><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>[</m:mo><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mspace width="3.33333pt"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mi>g</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mspace width="3.33333pt"/><m:mo>-</m:mo><m:mspace width="3.33333pt"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mi>g</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:munder><m:mo>∑</m:mo><m:mi>j</m:mi></m:munder><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math></equation>
+From this we conclude
+
+      (3)   <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>g</m:mi><m:mo>+</m:mo><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:munder><m:mo>∑</m:mo><m:mi>j</m:mi></m:munder><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:mstyle></m:math>  for
+all <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi mathvariant="bold">E</m:mi></m:mrow></m:math>
+
+Suppose a policy <emphasis effect="italics">d</emphasis> has been used.  That is, action <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow></m:math> is
+taken whenever the process is in state <emphasis effect="italics">i</emphasis>.  To simplify writing, we drop
+the indication of the action and simply write <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:mi>j</m:mi><m:mrow><m:mo>(</m:mo><m:mi>d</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math>,
+etc.  Associated with this policy, there is a gain <emphasis effect="italics">g</emphasis>.  We should
+like to determine whether or not this is the maximum possible gain, and if
+it is not, to find a policy which does give the maximum gain.
+The following two-phase procedure has been found to be effective.  It is essentially
+the procedure developed originally by Ronald Howard, who pioneered the treatment
+of these problems.  The new feature is the method of carrying out the value-determination
+step, utilizing the approximation method noted above.
+
+<list id="id156420" display="block" list-type="enumerated" number-style="arabic"><item id="uid12"><emphasis effect="bold">Value-determination procedure</emphasis>
+We calculate <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>g</m:mi><m:mo>=</m:mo><m:munder><m:mo>∑</m:mo><m:mi>i</m:mi></m:munder><m:msub><m:mi>π</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mspace width="3.33333pt"/><m:mrow><m:mi>π</m:mi><m:mi mathvariant="bold">q</m:mi></m:mrow></m:mrow></m:mstyle></m:math>.   As in Sec 4, we calculate
+<equation id="id156496"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:msub><m:mi mathvariant="bold">B</m:mi><m:mn>0</m:mn></m:msub><m:mi mathvariant="bold">q</m:mi><m:mo>≈</m:mo><m:mrow><m:mo>[</m:mo><m:mi mathvariant="bold">I</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mi mathvariant="bold">P</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>2</m:mn></m:msup><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:mo>⋯</m:mo><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mi>s</m:mi></m:msup><m:mspace width="3.33333pt"/><m:mo>-</m:mo><m:mspace width="3.33333pt"/><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:msub><m:mi mathvariant="bold">P</m:mi><m:mn>0</m:mn></m:msub><m:mo>]</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi mathvariant="bold">q</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>where</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi mathvariant="bold">P</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:munder><m:mo movablelimits="true" form="prefix">lim</m:mo><m:mi>n</m:mi></m:munder><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mi>n</m:mi></m:msup></m:mrow></m:math></equation></item>
+
+<item id="uid13"><emphasis effect="bold">Policy-improvement procedure</emphasis>
+
+We suppose policy <emphasis effect="italics">d</emphasis> has been used through period <emphasis effect="italics">n</emphasis>.  Then, by (3), above,
+<equation id="id156744"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>g</m:mi><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:munder><m:mo>∑</m:mo><m:mi>j</m:mi></m:munder><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math></equation>
+We seek to improve policy <emphasis effect="italics">d</emphasis> by selecting policy <emphasis effect="italics">d<sup><emphasis effect="normal">*</emphasis></sup></emphasis>, with <m:math overflow="scroll"><m:mrow><m:msup><m:mi>d</m:mi><m:mo>*</m:mo></m:msup><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msubsup><m:mi>a</m:mi><m:mrow><m:mi>i</m:mi><m:mi>k</m:mi></m:mrow><m:mo>*</m:mo></m:msubsup></m:mrow></m:math>, to satisfy
+<equation id="id156891"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>q</m:mi><m:mi>i</m:mi><m:mo>*</m:mo></m:msubsup><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:munder><m:mo>∑</m:mo><m:mi>j</m:mi></m:munder><m:msubsup><m:mi>p</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow><m:mo>*</m:mo></m:msubsup><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>a</m:mi><m:mrow><m:mi>i</m:mi><m:mi>k</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="3.33333pt"/><m:mo>+</m:mo><m:mspace width="3.33333pt"/><m:munder><m:mo>∑</m:mo><m:mi>j</m:mi></m:munder><m:msub><m:mi>p</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>a</m:mi><m:mrow><m:mi>i</m:mi><m:mi>k</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub><m:mspace width="0.166667em"/><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>a</m:mi><m:mrow><m:mi>i</m:mi><m:mi>k</m:mi></m:mrow></m:msub><m:mo>∈</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>}</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi></m:mrow></m:math></equation></item></list><emphasis effect="italics">Remarks</emphasis><list id="id157105" display="block" list-type="bulleted">
+
+<item id="uid14">In the procedure for selecting <emphasis effect="italics">d<sup><emphasis effect="normal">*</emphasis></sup></emphasis>, we use the “old” <emphasis effect="italics">v<sub>j</sub></emphasis>.
+</item>
+
+<item id="uid15">It has been established that <m:math overflow="scroll"><m:mrow><m:msup><m:mi>g</m:mi><m:mo>*</m:mo></m:msup><m:mspace width="3.33333pt"/><m:mo>≥</m:mo><m:mspace width="3.33333pt"/><m:mi>g</m:mi></m:mrow></m:math>, with equality iff <emphasis effect="italics">g</emphasis> is optimal.  
+Since there is a finite number of policies, the procedure
+must converge to an optimum stationary policy in a finite number of steps.
+
+</item></list>
+We implement this two step procedure with Matlab.  To demonstrate the procedure, we
+consider the following
+
+
+<example id="eip-id5477040"><title>A numerical example</title><para id="eip-id1164036977816">
+A Markov decision process has three states:  State space <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">E</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>3</m:mn><m:mo>}</m:mo></m:mrow></m:math>.</para>
+<para id="eip-id1164037693762">
+Actions:    State 1:    <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>3</m:mn><m:mo>}</m:mo></m:mrow></m:mrow></m:math>     State 2:  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>}</m:mo></m:mrow></m:mrow></m:math>     State 3:  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>}</m:mo></m:mrow></m:mrow></m:math>
+</para>
+<para id="eip-id4490869">
+Transition probabilities and rewards are:
+<table id="id157398" summary=""><tgroup cols="2"><tbody><row><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1/3  1/3  1/3]</entry><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mrow><m:mn>1</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1  3  4]</entry></row><row><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1/4  3/8  3/8]</entry><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mrow><m:mn>2</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [2  2  3]</entry></row><row><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1/3  1/3  1/3]</entry><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mrow><m:mn>3</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [2  2  3]</entry></row><row><entry>                                 </entry><entry>                           </entry></row><row><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>2</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1/8  3/8  1/2]</entry><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mrow><m:mn>2</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [2  1  2]</entry></row><row><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>2</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1/2  1/4  1/4]</entry><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mrow><m:mn>2</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1  4  4]</entry></row><row><entry>                                 </entry><entry>                           </entry></row><row><entry>             
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>3</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [3/8  1/4  3/8]</entry><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mrow><m:mn>3</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [2  3  3]</entry></row><row><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>3</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [1/8  1/4  5/8]</entry><entry><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mrow><m:mn>3</m:mn><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>:   [3  2  2]</entry></row></tbody></tgroup></table>
+Use the policy iteration method to determine the policy which gives the
+maximum gain <emphasis effect="italics">g</emphasis>.
+</para>
+<para id="eip-id8713256"><emphasis effect="bold">A computational procedure utilizing Matlab</emphasis>
+
+We first put the data in an m-file.  Since we have several cases, it is
+expedient to include the case number.  This example belongs to type 2.
+Data in file md61.m
+<code id="id157912" display="block">type = 2
+PA = [1/3 1/3 1/3; 1/4 3/8 3/8; 1/3 1/3 1/3; 0 0 0;
+     1/8 3/8 1/2; 1/2 1/4 1/4; 0 0 0;
+     3/8 1/4 3/8; 1/8 1/4 5/8]
+GA = [1 3 4; 2 2 3; 2 2 3; 0 0 0;        % Zero rows are separators
+     2 1 2; 1 4 4; 0 0 0;
+     2 3 3; 3 2 2]
+A = [1 2 3 0 1 2 0 1 2]
+</code>
+</para>
+
+<code id="id157999" display="block">md61
+type = 2
+PA = 0.3333    0.3333    0.3333
+    0.2500    0.3750    0.3750
+    0.3333    0.3333    0.3333
+         0         0         0
+    0.1250    0.3750    0.5000
+    0.5000    0.2500    0.2500
+         0         0         0
+    0.3750    0.2500    0.3750
+    0.1250    0.2500    0.6250
+ 
+GA =  1     3     4
+     2     2     3
+     2     2     3
+     0     0     0
+     2     1     2
+     1     4     4
+     0     0     0
+     2     3     3
+     3     2     2
+ 
+A =   1     2     3     0     1     2     0     1     2
+</code>
+
+<para id="eip-id1164034731724">Once the data are entered into Matlab by the call for file “md61,” we make
+preparation for the policy-improvement step.  The procedure
+is in the file newpolprep.m
+</para>
+
+<code id="id158222" display="block">% file newpolprep.m
+% version of 3/23/92
+disp('Data needed:')
+disp('  Matrix PA of transition probabilities for states and actions')
+disp('  Matrix GA of gains for states and actions')
+disp('  Type number to identify GA matrix types')
+disp('    Type 1.  Gains associated with a state')
+disp('    Type 2.  One-step transition gains')
+disp('    Type 3.  Gains associated with a demand')
+disp('  Row vector of actions')
+disp('  Value of alpha (= 1 for no discounting)')
+c  = input('Enter type number to show gain type ');
+a  = input('Enter value of alpha (= 1 for no discounting) ');
+PA = input('Enter matrix PA of transition probabilities ');
+GA = input('Enter matrix GA of gains ');
+if c == 3
+ PD = input('Enter row vector of demand probabilities ');
+end
+if c == 1
+ QA = GA';
+elseif c ==2
+ QA = diag(PA*GA');     % (qx1)
+else
+ QA = GA*PD';
+end
+</code>
+
+<code id="id158522" display="block">A  = input('Enter row vector A of possible actions ');  % (1xq)
+m  = length(PA(1,:));
+q  = length(A);
+n  = input('Enter n, the power of P  to approximate P0 ');
+s  = input('Enter s, the power of P  in the approximation of V ');
+QD = [(1:q)' A' QA];    % First col is index; second is A; third is QA
+DIS = ['    Index      Action    Value'];
+disp(DIS)
+disp(QD)
+if a == 1
+ call = 'Call for newpol';
+else
+ call = 'Call for newpold';
+end
+disp(call)
+</code>
+
+
+<code id="id158704" display="block">newpolprep   % Call for preparatory program in file npolprep.m
+Data needed:
+ Matrix PA of transition probabilities for states and actions
+ Matrix GA of gains for states and actions
+ Type number to identify GA matrix types
+   Type 1.  Gains associated with a state
+   Type 2.  One-step transition gains
+   Type 3.  Gains associated with a demand
+ Row vector of actions
+ Value of alpha (= 1 for no discounting)
+ 
+Enter type number to show gain type 2
+Enter value of alpha (=1 for no discounting) 1
+Enter matrix PA of transition probabilities  PA
+Enter matrix GA of gains GA
+Enter row vector A of possible actions  A
+Enter n, the power of P  to approximate P0  16
+Enter s, the power of P  in the approximation of V  6
+   Index      Action    Value
+   1.0000    1.0000    2.6667
+   2.0000    2.0000    2.3750
+   3.0000    3.0000    2.3333
+   4.0000         0         0
+   5.0000    1.0000    1.6250
+   6.0000    2.0000    2.5000
+   7.0000         0         0
+   8.0000    1.0000    2.6250
+   9.0000    2.0000    2.1250
+ 
+Call for newpol
+</code>
+<para id="eip-id1164037325183">The procedure has prompted for the procedure newpol (in file newpol.m)
+</para>
+
+<code id="id158994" display="block">% file:  newpol.m  (without discounting)
+% version of 3/23/92
+d  = input('Enter policy as row matrix of indices ');
+D  = A(d);               % policy in terms of actions
+P  = PA(d',:);           % selects probabilities for policy
+Q  = QA(d',:);           % selects next-period gains for policy
+P0 = P^n;                % Display to check convergence
+PI = P0(1,:);            % Long-run distribution
+G = PI*Q                 % Long-run expected gain per period
+C = P + eye(P);
+for j=2:s
+ C = C + P^j;           % C = I + P + P^2 + ... + P^s
+end
+V = (C - (s+1)*P0 )*Q;  % B = B0*Q
+disp(' ')
+disp('Approximation to P0; rows are long-run dbn')
+disp(P0)
+disp('Policy in terms of indices')
+disp(d)
+disp('Policy in terms of actions')
+disp(D)
+disp('Values for the policy selected')
+disp(V)
+disp('Long-run expected gain per period G')
+disp(G)
+T = [(1:q)' A' (QA + PA*V)];  % Test values for determining new policy
+DIS =['    Index     Action   Test Value'];
+disp(DIS)
+disp(T)
+disp('Check current policy against new test values.')
+disp('--If new policy needed, call for newpol')
+disp('--If not, use policy, values V, and gain G, above')
+</code>
+
+
+
+<code id="id159384" display="block">newpol
+Enter policy as row matrix of indices [2 6 9]  % A deliberately poor choice
+ 
+Approximation to P0; rows are long-run dbn
+   0.2642    0.2830    0.4528
+   0.2642    0.2830    0.4528
+   0.2642    0.2830    0.4528
+ 
+Policy in terms of indices
+    2     6     9
+ 
+Policy in terms of actions
+    2     2     2
+</code>
+<code id="id159511" display="block">Long-run expected gain per period G
+   2.2972
+ 
+   Index     Action   Test Value
+   1.0000    1.0000    2.7171
+   2.0000    2.0000    2.4168
+   3.0000    3.0000    2.3838
+   4.0000         0         0
+   5.0000    1.0000    1.6220
+   6.0000    2.0000    2.5677
+   7.0000         0         0
+   8.0000    1.0000    2.6479
+   9.0000    2.0000    2.0583
+ 
+Check current policy against new test values.
+--If new policy needed, call for newpol
+--If not, use policy and gain G, above      % New policy is needed
+newpol
+ 
+Enter policy as row matrix of indices [1 6 8]
+ 
+Approximation to P0; rows are long-run dbn
+   0.3939    0.2828    0.3232
+   0.3939    0.2828    0.3232
+   0.3939    0.2828    0.3232
+ 
+Policy in terms of indices
+    1     6     8
+ 
+Policy in terms of actions
+    1     2     1
+ 
+Values for selected policy
+   0.0526
+  -0.0989
+   0.0223
+ 
+Long-run expected gain per period G
+   2.6061
+ 
+   Index     Action   Test Value
+   1.0000    1.0000    2.6587
+   2.0000    2.0000    2.3595
+   3.0000    3.0000    2.3254
+   4.0000         0         0
+   5.0000    1.0000    1.6057
+   6.0000    2.0000    2.5072
+   7.0000         0         0
+   8.0000    1.0000    2.6284
+   9.0000    2.0000    2.1208
+ 
+Check current policy against new test values.
+--If new policy needed, call for newpol    
+--If not, use policy, values V, and gain G, above
+</code>
+
+<para id="eip-id8209897">Since the policy selected on this iteration is the same as the
+previous one, the procedure has converged to an optimal policy.
+The first of the first three rows is maximum; the second of the next two
+rows is maximum; and the first of the final two rows is maximum.  Thus,
+we  have selected rows 1, 5, 6, corresponding to the optimal policy <m:math overflow="scroll"><m:mrow><m:msup><m:mi>d</m:mi><m:mo>*</m:mo></m:msup><m:mo>∼</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mspace width="0.277778em"/><m:mn>2</m:mn><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+The expected long-run gain per period <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>6061</m:mn></m:mrow></m:math>.</para>
+
+<para id="eip-id1164037225662">The value matrix is</para>
+
+<equation id="id160105"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mspace width="3.33333pt"/><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:msub><m:mi>v</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:msub><m:mi>v</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:msub><m:mi>v</m:mi><m:mn>3</m:mn></m:msub><m:mspace width="3.33333pt"/><m:mspace width="3.33333pt"/><m:mspace width="3.33333pt"/><m:mspace width="3.33333pt"/></m:mrow></m:mtd></m:mtr></m:mtable><m:mspace width="3.33333pt"/></m:mfenced><m:mspace width="3.33333pt"/><m:mo>=</m:mo><m:mfenced separators="" open="[" close="]"><m:mtable><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0527</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0989</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="right"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0223</m:mn><m:mspace width="3.33333pt"/></m:mrow></m:mtd></m:mtr></m:mtable><m:mspace width="3.33333pt"/></m:mfenced></m:mrow></m:math></equation>
+
+<para id="eip-id6231774">We made a somewhat arbitrary choice of the powers of <emphasis effect="bold">P</emphasis> used in the
+approximation of <emphasis effect="italics">P<sub>0</sub></emphasis> and <emphasis effect="italics">B<sub>0</sub></emphasis>.  As we note in the development
+of the approximation procedures in Sec 4, the convergence of <m:math overflow="scroll"><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mi>n</m:mi></m:msup></m:math>
+is governed by the magnitude of the largest eigenvalue other than one.
+We can always get a check on the reliability of the calculations by checking
+the eigenvalues for <emphasis effect="bold">P</emphasis> corresponding to the presumed optimal policy.  For
+the choice above, we find the eigenvalues to be  1, -0.1250, 0.0833.  Since
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:msup><m:mn>125</m:mn><m:mn>4</m:mn></m:msup><m:mo>≈</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0002</m:mn></m:mrow></m:math>, the choices of exponents should be quite
+satisfactory.  In fact, we could probably use <m:math overflow="scroll"><m:msup><m:mrow><m:mi mathvariant="bold">P</m:mi></m:mrow><m:mn>8</m:mn></m:msup></m:math> as a satisfactory
+approximation to <emphasis effect="italics">P<sub>0</sub></emphasis>, if that were desirable.  The margin allows for
+the possibility that for some policies the eigenvalues may not be so small.
+— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+</example>
+</item>
+<item>Policy iteration– with discounting
+<newline/>
+
+It turns out that the policy iteration procedure is simpler in the case of
+discounting, as suggested by the evolution analysis in Sec 4.  We have
+the following two-phase procedure, based on that analysis.
+
+<list id="id160725" display="block" list-type="enumerated" number-style="arabic"><item id="uid16"><emphasis effect="bold">Value-determination procedure</emphasis>.
+
+ 
+Given the <emphasis effect="italics">q<sub>i</sub></emphasis> and transition probabilities <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:math> for the current
+policy, solve  <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:mi mathvariant="bold">q</m:mi><m:mo>+</m:mo><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mi mathvariant="bold">v</m:mi></m:mrow></m:math> to get for the
+corresponding <emphasis effect="italics">v<sub>i</sub></emphasis><equation id="id160849"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="bold">v</m:mi><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:mi mathvariant="bold">I</m:mi><m:mo>-</m:mo><m:mi>α</m:mi><m:mi mathvariant="bold">P</m:mi><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mi mathvariant="bold">q</m:mi></m:mrow></m:math></equation></item>
+
+<item id="uid17"><emphasis effect="bold">Policy-improvement procedure</emphasis>
+
+Given <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>v</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi><m:mo>}</m:mo></m:mrow></m:math> for the current policy, determine
+a new policy <emphasis effect="italics">d<sup><emphasis effect="normal">*</emphasis></sup></emphasis>, with each <m:math overflow="scroll"><m:mrow><m:msup><m:mi>d</m:mi><m:mo>*</m:mo></m:msup><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>a</m:mi><m:mi>i</m:mi></m:msub><m:mo>*</m:mo></m:mrow></m:math> determined as that action
+for which
+<equation id="id161021"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>q</m:mi><m:mi>i</m:mi><m:mo>*</m:mo></m:msubsup><m:mo>+</m:mo><m:mi>α</m:mi><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>M</m:mi></m:munderover><m:msup><m:mi>p</m:mi><m:mo>*</m:mo></m:msup><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:munder><m:mo movablelimits="true" form="prefix">max</m:mo><m:mi>k</m:mi></m:munder><m:mrow><m:mo>{</m:mo><m:msub><m:mi>q</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>a</m:mi><m:mrow><m:mi>i</m:mi><m:mi>k</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>M</m:mi></m:munderover><m:msub><m:mi>p</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>a</m:mi><m:mrow><m:mi>i</m:mi><m:mi>k</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:msub><m:mi>v</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>a</m:mi><m:mrow><m:mi>i</m:mi><m:mi>k</m:mi></m:mrow></m:msub><m:mo>∈</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation></item></list>
+We illustrate the Matlab procedure with the same numerical example as in the previous
+case, using discount factor <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:math>.  The data file is the same, so that we call for
+it, as before.
+
+<example id="eip-id1164037026665">
+
+<para id="eip-id3556806">
+
+Assume data in file md61.m is in Matlab;  if not, call for md61.
+We use the procedure newpolprep to  prepare for the iterative procedure by making some
+initial choices.</para>
+
+<code id="id161282" display="block">newpolprep
+Data needed:
+ Matrix PA of transition probabilities for states and actions
+ Matrix GA of gains for states and actions
+ Type number to identify GA matrix types
+   Type 1.  Gains associated with a state
+   Type 2.  One-step transition gains
+   Type 3.  Gains associated with a demand
+ Row vector of actions
+ Value of alpha (= 1 for no discounting)
+</code>
+
+<code id="id161381" display="block">Enter type number to show gain type 2
+Enter value of alpha (= 1 for no discounting) 0.8
+Enter matrix PA of transition probabilities PA
+Enter matrix GA of gains GA
+Enter row vector A of possible actions A
+Enter n, the power of P  to approximate P0 16
+Enter s, the power of P  in the approximation of V 6
+ 
+   Index      Action  Test Value
+   1.0000    1.0000    2.6667
+   2.0000    2.0000    2.3750
+   3.0000    3.0000    2.3333
+   4.0000         0         0
+   5.0000    1.0000    1.6250
+   6.0000    2.0000    2.5000
+   7.0000         0         0
+   8.0000    1.0000    2.6250
+   9.0000    2.0000    2.1250
+ 
+Call for newpold
+</code>
+
+<para id="eip-id4542239">The procedure for policy iteration is in the file newpold.m.
+</para>
+
+<code id="id161576" display="block">% file newpold.m  (with discounting)
+% version of 3/23/92
+d = input('Enter policy as row matrix of indices ');
+D = A(d);
+P = PA(d',:);        % transition matrix for policy selected
+Q = QA(d',:);        % average next-period gain for policy selected
+ 
+V = (eye(P) - a*P)\Q;            % Present values for unlimited future
+T = [(1:q)' A' (QA + a*PA*V)];   % Test values for determining new policy
+disp(' ')
+disp('Approximation to P0; rows are long-run dbn')
+disp(P0)
+disp('    Policy in terms of indices')
+disp(d)
+disp('    Policy in terms of actions')
+disp(D)
+disp('  Values for policy')
+disp(V)
+DIS =['    Index     Action    Test Value'];
+disp(DIS)
+disp(T)
+disp('Check current policy against new test values.')
+disp('--If new policy needed, call for newpold')
+disp('--If not, use policy and values above')
+</code>
+
+
+<code id="id161883" display="block">newpold
+Enter policy as row matrix of indices [3 5 9]  % Deliberately poor choice
+ 
+Approximation to P0; rows are long-run dbn
+   0.3939    0.2828    0.3232
+   0.3939    0.2828    0.3232
+   0.3939    0.2828    0.3232
+ 
+   Policy in terms of indices
+    3     5     9
+ 
+   Policy in terms of actions
+    3     1     2
+ 
+ Values for policy
+  10.3778
+   9.6167
+  10.1722
+ 
+   Index     Action  Test Value
+   1.0000    1.0000   10.7111
+   2.0000    2.0000   10.3872
+   3.0000    3.0000   10.3778
+   4.0000         0         0
+   5.0000    1.0000    9.6167
+   6.0000    2.0000   10.6089
+   7.0000         0         0
+   8.0000    1.0000   10.7133
+   9.0000    2.0000   10.1722
+ 
+Check current policy against new test values.
+--If new policy needed, call for newpold
+--If not, use policy and values above
+ 
+newpold
+Enter policy as row matrix of indices [1 6 8]
+ 
+Approximation to P0; rows are long-run dbn
+   0.3939    0.2828    0.3232
+   0.3939    0.2828    0.3232
+   0.3939    0.2828    0.3232
+ 
+   Policy in terms of indices
+    1     6     8
+ 
+   Policy in terms of actions
+    1     2     1
+ 
+ Values for policy
+  13.0844
+  12.9302
+  13.0519
+</code>
+<code id="id162370" display="block">   Index     Action  Test Value
+   1.0000    1.0000   13.0844
+   2.0000    2.0000   12.7865
+   3.0000    3.0000   12.7511
+   4.0000         0         0
+   5.0000    1.0000   12.0333
+   6.0000    2.0000   12.9302
+   7.0000         0         0
+   8.0000    1.0000   13.0519
+   9.0000    2.0000   12.5455
+ 
+Check current policy against new test values.
+--If new policy needed, call for newpold
+--If not, use policy and values above
+</code>
+
+<para id="eip-id1164038501221">Since the policy indicated is the same as the previous policy,
+we know this is an optimal policy.  Rows 1, 6, 8, indicate the
+optimal policy to be <m:math overflow="scroll"><m:mrow><m:msup><m:mi>d</m:mi><m:mo>*</m:mo></m:msup><m:mo>∼</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  It turns out in
+this example that the optimal policies are the same for the
+discounted and undiscounted cases.  That is not always true.
+The <emphasis effect="bold">v</emphasis> matrix gives the present values for unlimited
+futures, for each of the three possible starting states.</para>
+</example>
+</item></list>
+  </content>
+</document>

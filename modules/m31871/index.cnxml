@@ -1,0 +1,14 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+
+<title>Preface</title>
+<metadata>
+  <md:content-id>m31871</md:content-id><md:title>Preface</md:title>
+  <md:abstract>Preface to "Topics in Applied Probability", a supplementary collection of further examples, problems, and m-files related to Applied Probability.</md:abstract>
+  <md:uuid>fce5680a-4f59-4e6a-983f-e8b5291751a5</md:uuid>
+</metadata>
+
+<content>
+  <para id="delete_me">Topics in Applied Probability is meant to supplement the collection <link document="col10708">Applied Probability</link> with examples, further problems, and m-files. This collection is not meant to stand alone but rather serve as a miscellany of further content not included in the original collection. Topics discussed in this collection include Martingale Sequences and Markov Procedures as well as a few others. In addition, the collection of m-files contains both the user-defined programs and a collection of m-files for specific problems with properly formatted data. </para><para id="eip-950"><title>MATLAB Files</title>These files can be entered into MATLAB by calling the appropriate file. These m-files come from a variety of sources ( e.g., exams or problem sets, hence the odd names) and may be useful for examples and exercises. In order to allow for easy access to the helpful m-files, a supplementary link has been placed in the upper right side of each module in the "Topics in Applied Probability" collection. Selecting this link will launch the download of a zip document containing a suite of m-files. Unzipping this file and saving its contents to your local system will allow for easy and reliable access when working with MATLAB. </para>
+</content>
+
+</document>

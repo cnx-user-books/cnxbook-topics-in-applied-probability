@@ -1,0 +1,286 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Order Statistics</title>
+  <metadata>
+  <md:content-id>m31071</md:content-id><md:title>Order Statistics</md:title>
+  <md:abstract>A basic treatment of order statistics.</md:abstract>
+  <md:uuid>e4c7f215-9ff6-46b7-a205-cb7df0227c6e</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="m-file directory.zip" strength="3">Basic M-Procedures for Calculation</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+    <!--empty paragraphs get left behind.-->
+    
+    <!--empty paragraphs get left behind.-->
+    <para id="id319128">In sampling statistics (see Sec 18.7), we deal
+with an iid class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>i</m:mi><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of
+random variables, where <emphasis effect="italics">n</emphasis> is a prescribed
+positive integer known as the sample size. An observation of this class
+gives an <emphasis effect="italics">n</emphasis>-tuple of numbers <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>.
+As an extension of the extreme values in the case of two variables (Ex 2.11),
+it is often useful to define a
+random variable <emphasis effect="italics">Y<sub>1</sub></emphasis> whose value for any <emphasis effect="italics">ω</emphasis> is the
+smallest of the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>;  a second random variable
+<emphasis effect="italics">Y<sub>2</sub></emphasis> whose value
+at <emphasis effect="italics">ω</emphasis> is the next smallest of the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, and so on
+through <emphasis effect="italics">Y<sub>n</sub></emphasis> whose value at <emphasis effect="italics">ω</emphasis> is the largest of the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  We would like to be able to obtain the distributions for
+these new random variables in terms of the common distribution for the
+<emphasis effect="italics">X<sub>i</sub></emphasis>.  We formulate the problem as follows.</para>
+
+    <example id="fs-id1166372955639">
+<title>Order Statistics</title>
+    <!--empty paragraphs get left behind.-->
+    <para id="id319418">Suppose  <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi/><m:mi/><m:mn>1</m:mn><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>i</m:mi><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid, with common
+distribution function <emphasis effect="italics">F</emphasis>.  Let</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id319501" display="block" list-type="bulleted"><item id="uid1"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mn>1</m:mn></m:msub><m:mi/><m:mo>=</m:mo></m:mrow></m:math> smallest of    <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mi/><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>,</m:mo><m:mi/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math></item>
+      <item id="uid2"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mn>2</m:mn></m:msub><m:mi/><m:mo>=</m:mo></m:mrow></m:math> next larger of <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mi/><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>,</m:mo><m:mi/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math></item>
+      <item id="uid3">. . .                       
+</item>
+      <item id="uid4"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mi/><m:mo>=</m:mo></m:mrow></m:math> largest of <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>.</m:mo><m:mo>,</m:mo><m:mi/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math></item>
+    </list>
+    
+    <!--empty paragraphs get left behind.-->
+    <para id="id319950">Then <emphasis effect="italics">Y<sub>k</sub></emphasis> is called the <emphasis effect="italics">k</emphasis>th <emphasis effect="bold">order statistic</emphasis> for the class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>i</m:mi><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>.   
+We wish to determine the distribution functions  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>k</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mi/><m:mo>=</m:mo><m:mi/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mi/><m:mi/><m:mn>1</m:mn><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>k</m:mi><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>n</m:mi></m:mrow></m:math>.  Now, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>t</m:mi></m:mrow></m:math>  iff  <emphasis effect="italics">k</emphasis> or more of the <emphasis effect="italics">X<sub>i</sub></emphasis> have values
+no greater than <emphasis effect="italics">t</emphasis>.  We may view the process as a Bernoulli
+sequence of <emphasis effect="italics">n</emphasis> trials.  There is a success on the <emphasis effect="italics">i</emphasis>th trial
+iff  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>t</m:mi></m:mrow></m:math>.  The probability <emphasis effect="italics">p</emphasis> of a success is <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mi/><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>t</m:mi><m:mo>)</m:mo><m:mi/><m:mo>=</m:mo><m:mi/><m:mi>F</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Hence</para>
+    <!--empty paragraphs get left behind.-->
+    <equation id="id320327"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>F</m:mi>
+            <m:mi>k</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi/>
+          <m:mo>=</m:mo>
+          <m:mi/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mi/>
+            <m:mo>≤</m:mo>
+            <m:mi/>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi/>
+          <m:mo>=</m:mo>
+          <m:mi/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>k</m:mi>
+<m:mspace width="4pt"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="4pt"/>
+            <m:mtext>more</m:mtext>
+            <m:mspace width="4pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="4pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4pt"/>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="4pt"/>
+            <m:mtext>lie</m:mtext>
+            <m:mspace width="4pt"/>
+            <m:mtext>in</m:mtext>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mo movablelimits="true" form="prefix">inf</m:mo>
+              <m:mo>,</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>         
+   <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>j</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:mi>C</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>j</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msup>
+            <m:mi>F</m:mi>
+            <m:mi>j</m:mi>
+          </m:msup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>j</m:mi>
+            </m:mrow>
+          </m:msup>
+        </m:mrow>
+      </m:math>
+    </equation>
+</example>
+    <!--empty paragraphs get left behind.-->
+    <para id="id320618"><emphasis effect="italics">Remark</emphasis>.  Once the common distribution
+function <emphasis effect="italics">F</emphasis> for the <emphasis effect="italics">X<sub>i</sub></emphasis> is known,
+then the <emphasis effect="italics">F<sub>k</sub></emphasis> are calculated in a straightforward manner.  For that purpose
+we may use the MATLAB function cbinom.</para>
+    <!--empty paragraphs get left behind.-->
+    <example id="fs-id1168001683385">
+    <!--empty paragraphs get left behind.-->
+    <para id="id320681">Suppose the <emphasis effect="italics">X<sub>i</sub></emphasis> are exponential (2).  Then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>t</m:mi></m:mrow></m:msup></m:mrow></m:math> for positive <emphasis effect="italics">t</emphasis>.
+Suppose <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>5</m:mn></m:mrow></m:math>.  We calculate <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>k</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi/><m:mn>0.1</m:mn><m:mo>,</m:mo><m:mn>0.3</m:mn><m:mo>,</m:mo><m:mn>0.5</m:mn><m:mo>,</m:mo><m:mn>0.7</m:mn><m:mo>,</m:mo><m:mn>0.9</m:mn></m:mrow></m:math>.  </para>
+<code id="fs-id1168001786957" display="block">
+n = 5;
+t = 0.1:0.2:0.9;
+m = length(t);
+F = 1 - exp(-2*t);
+for i = 1:m
+FK(i,:) = cbinom(n,F(i),1:n);
+end
+disp([t' F' FK])    % k = 1    k = 2     k = 3     k = 4     k = 5
+0.1000    0.1813    0.6321    0.2249    0.0445    0.0046    0.0002
+0.3000    0.4512    0.9502    0.7456    0.4091    0.1324    0.0187
+0.5000    0.6321    0.9933    0.9354    0.7364    0.3946    0.1009
+0.7000    0.7534    0.9991    0.9852    0.9000    0.6400    0.2427
+0.9000    0.8347    0.9999    0.9968    0.9653    0.8064    0.4052
+</code>
+    </example>
+    <para id="id321025">The following special case is important in characterizing
+the Poisson process (see Sec 21.1).</para>
+    <!--empty paragraphs get left behind.-->
+    <example id="fs-id1168002572676">
+  <para id="fs-id1168004840602">Order statistics for uniformly distributed random variables</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id321050">Suppose  <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>U</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>i</m:mi><m:mi/><m:mo>≤</m:mo><m:mi/><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid,  uniform on <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>T</m:mi><m:mo>]</m:mo></m:mrow></m:math>.  
+Determine the distribution functions for the order statistics.</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id321141">SOLUTION</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id321150">The common distribution function for the <emphasis effect="italics">U<sub>i</sub></emphasis> is given by  <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>/</m:mo><m:mi>T</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mi>T</m:mi></m:mrow></m:math>.  
+According to the result in Ex 2.16, the <emphasis effect="italics">k</emphasis>th order statistic <emphasis effect="italics">Y<sub>k</sub></emphasis>
+has the distribution function</para>
+    <equation id="id321244"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>F</m:mi>
+            <m:mi>k</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>≤</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>j</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:mi>C</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>j</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msup>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mfrac>
+                <m:mi>t</m:mi>
+                <m:mi>T</m:mi>
+              </m:mfrac>
+            </m:mfenced>
+            <m:mi>j</m:mi>
+          </m:msup>
+          <m:msup>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mfrac>
+                <m:mrow>
+                  <m:mi>T</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>t</m:mi>
+                </m:mrow>
+                <m:mi>T</m:mi>
+              </m:mfrac>
+            </m:mfenced>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>j</m:mi>
+            </m:mrow>
+          </m:msup>
+          <m:mn>0</m:mn>
+          <m:mo>&lt;</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>&lt;</m:mo>
+          <m:mi>T</m:mi>
+        </m:mrow>
+      </m:math>
+    </equation>
+</example>
+  </content>
+</document>
