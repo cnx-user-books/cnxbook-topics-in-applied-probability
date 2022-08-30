@@ -773,7 +773,7 @@ monotonicity, and <link target-id="" document="">(CE7)</link></para>
 <m:mtable>
 <m:mtr>
 <m:mtd>
-<m:mstyle mathvariant="doublestruck"><m:mtext>a</m:mtext></m:mstyle>
+<m:mstyle mathvariant="double-struck"><m:mtext>a</m:mtext></m:mstyle>
 </m:mtd>
 <m:mtd>
 <m:mrow>
